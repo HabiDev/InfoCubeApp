@@ -1,0 +1,64 @@
+ru:
+  app:
+    title: ИнфоКуб    
+  navbar:
+    brand: На главную
+    home_link: Главная
+    about_link: О нас
+    contact_link: Контакты
+    sign_in: Войти
+    sign_out: Выйти
+    aria_label: Переключатель навигации 
+  button:
+    new: Добавить
+    edit: Редактировать
+    show: Просмотр
+    destroy: Удалить
+    back: Назад
+    close: Закрыть
+    reset_password: Изменение пароля
+    lock_user: Заблокировать
+    unlock_user: Разблокировать  
+    import: Импорт(xls)
+  submit:
+    create: Создать
+    update: Обновить
+    cancel: Отмена
+    save: Сохранить
+    search: Найти
+    clear: Сбросить
+  caption:
+    current_sign_in: в системе
+    last_sign_in: последний сеанс
+    locked_at: Заблокирован 
+  notice:
+    record_create: Запись удачно создан.
+    record_destroy: Запись удален.
+    record_edit: Запись откоректировано.
+    record_destroy_errors: Запись не может быть удалена. Иммеются связанные записи.
+    record_update_errors: Запись не обновлена.
+    record_imported: Импорт данных прошла успешно.
+    record_imported_error: Импорт данных не успешен.
+    card_not_found: По данной карта нет данных.
+    E500: Сервер не доступен!
+    sub_statement_not_present: Ведосмость начисления пустая!
+    statement_success: Ведомость проведена.
+    copy_record_create: Копия записи удачно создан. 
+    copy_record_unsuccess: Копия создания записи не успешен.
+    statement_success_errors: 
+      few: Ведомость проведена не польностью. По %{count} картам иммеются ошибки.
+      many: Ведомость проведена не польностью. По %{count} картам иммеются ошибки.
+      one: Ведомость проведена не польностью. На %{count} карте иммеются ошибка.
+      other: Ведомость проведена не польностью. По %{count} картам иммеются ошибки.
+    statement_unsuccess: Ведомость непроведена.
+    export_record_not_found: Нет данных для выгрузки.
+    confirm: Вы дествительно хотите удалить запись?
+    confirm_copied: Вы дествительно хотите создать новую(с копированием текущей)?
+    confirm_statement: Вы дествительно хотите произвести начисления бонусных баллов?
+    confirm_cancel_statement: Вы дествительно хотите отменить начисления бонусных баллов?
+    sign_out: Вы дествительно хотите выйти?
+    photos_create: Изоброжение (файл) удачно добавлен.
+    photo_destroy: Изоброжение (файл) удачно удален.
+    balance_refresh: Информация о балансе обновлена.
+    
+
