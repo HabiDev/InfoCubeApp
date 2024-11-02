@@ -1,0 +1,12 @@
+= simple_form_for @user_division do |f|
+  = f.error_notification    
+  .row
+    .col-12
+      = f.input :user_id, as: :hidden, class: 'form-control form-control-sm'
+  .row
+    .col-12.col-md-9
+      = f.input :division_id, collection: @divisions_lists, label_method: :name, value_method: :id, required: true, autofocus: true,  input_html: { class: 'form-control form-control-sm' }
+  .row 
+    .col-12.text-end
+      span.p-2
+        = f.submit "#{t('submit.save')}", class: "btn btn-primary", data: { turbo_frame: "modal_add" }

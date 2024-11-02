@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_30_170806) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_02_100046) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "divisions", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "store_id", null: false
+    t.string "organization"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "store"
+    t.string "provider"
+    t.string "product_group"
+    t.string "required"
+    t.string "product"
+    t.integer "day_store"
+    t.decimal "sales", precision: 10, scale: 2, default: "0.0"
+    t.decimal "remainder", precision: 10, scale: 2, default: "0.0"
+    t.string "average_sales", default: "0"
+    t.string "to_order"
+    t.decimal "quantum", precision: 10, scale: 2, default: "0.0"
+    t.integer "availability_order"
+    t.integer "next_order"
+    t.integer "cal_day_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "store_id", default: 0, null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string "full_name", default: "", null: false
@@ -22,6 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_30_170806) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "user_divisions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "division_id", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_user_divisions_on_division_id"
+    t.index ["user_id"], name: "index_user_divisions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_30_170806) do
   end
 
   add_foreign_key "profiles", "users"
+  add_foreign_key "user_divisions", "divisions"
+  add_foreign_key "user_divisions", "users"
 end

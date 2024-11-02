@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title BonusCardApp
+    title InfoCubeApp
     meta content="width=device-width, initial-scale=1" name="viewport" 
     meta name="turbo-prefetch" content="false"
     = csrf_meta_tags 
@@ -14,7 +14,7 @@ html
         .row
           = render 'layouts/header'      
       main       
-        .container
+        .container-fluid
           .col.m-2
             = render 'shared/loading_data'
             #flash.flash

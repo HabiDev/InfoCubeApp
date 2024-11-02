@@ -1,0 +1,48 @@
+= turbo_frame_tag "modal_form"
+  .modal-header
+    h4#modalTaskLabel.modal-title.fw-bold.lh-1
+      = "#{@user.model_name.human} (#{@user.full_name})"           
+    button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+  .modal-body
+    .card.shadow-sm.p-0.mb-3.bg-white.rounded-9
+      .card-body
+        .row 
+          .col-12.text-end.mb-3
+            .h6.fst-italic.fw-bold               
+              = "#{@user.class.human_attribute_name(:type_role)}: "
+              span.fw-normal
+                = "#{enum_l(@user, :type_role)}"  
+        .row            
+          .col-6
+            .h6.fst-italic.fw-bold             
+              = "#{@user.class.human_attribute_name(:email)}: "
+              span.fw-normal
+                = @user.email
+          .col-4
+            .h6.fst-italic.fw-bold               
+              = "#{@user.profile.class.human_attribute_name(:mobile)}: "
+              span.fw-normal
+                = @user.profile.mobile
+        .row 
+          .col-12.mx-2.mt-3
+            .h6.fst-italic.fw-bold
+              = "Склады: "  
+              = link_to "(Добавить)", new_user_division_path(user_id: @user.id), data: { turbo_frame: "modal_add" }, class: "fw-bold link-success link-offset-3 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small"
+            = turbo_frame_tag "user_divisions" 
+              - if @user&.user_divisions.present?                
+                = render 'user_divisions/user_divisions', resource: @user
+            / .col-4.text-center
+            /   .h6.fst-italic.fw-bold.text-success.small                  
+            /     = "#{@card.class.human_attribute_name(:default_charge_sum)}"
+            /   hr.mt-0.text-primary
+            /   .row
+            /     span.fw-normal.small.mt-0
+            /       = @card.default_charge_sum
+            / - if @card.locked_at.present?
+            /   .row
+            /     .col-12.mt-5
+            /       .h6.fst-italic.fw-bold.text-danger
+            /         = "#{@card.class.human_attribute_name(:locked_at)}:"
+            /         span.fw-normal.px-3
+            /           =l(@card.locked_at, format: :normal)
+    

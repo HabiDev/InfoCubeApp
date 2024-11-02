@@ -2,6 +2,10 @@
   .modal-dialog.modal-lg
     .modal-content
       = turbo_frame_tag "modal_form"
+#modalAdd.modal[data-controller="modal-add" data-modal-add-target="modalAdd" data-action="turbo:frame-load->modal-add#open turbo:submit-end->modal-add#close"]
+  .modal-dialog.modal-lg
+    .modal-content
+      = turbo_frame_tag "modal_add"
 / #modalTask.modal[tabindex="-1" data-controller="modal-task" data-modal-task-target="modalTask" data-action="turbo:frame-load->modal-task#open"]
 /   .modal-dialog.modal-lg
 /     .modal-content

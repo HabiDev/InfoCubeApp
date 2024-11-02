@@ -57,10 +57,10 @@ export default class extends Controller {
     // $('#single-select-subcategory-work').select2({ dropdownParent: $('#modalTask') }); 
     // $('#single-select-division-task-search').select2();
     // $('#single-select-division-comp_task-search').select2();
-    // $('#single-select-user-comp_task-search').select2(); 
-    // $('#single-select-sub_category-comp_task-search').select2(); 
-    // $('#single-select-category-comp_task-search').select2(); 
-    // $('#single-select-user-missions-search').select2(); 
+    $('#order-product-group-select').select2(); 
+    $('#order-product-select').select2(); 
+    $('#order-provider-select').select2(); 
+    $('#order-store-select').select2(); 
     // $('#single-select-sub_category-task-search').select2(); 
 
     // this.showWorkload();

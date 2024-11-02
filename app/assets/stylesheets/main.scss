@@ -4,7 +4,7 @@ body {
 }
 
 footer {
-  height: 70px;
+  height: 60px;
 }
 
 // .sticky-top {
@@ -72,7 +72,7 @@ main {
 
 @media (min-width: 1450px) and (max-width: 1980px) {
   .fixed-header {
-    height: 750px;
+    height: 700px;
   } 
 }
 
@@ -80,6 +80,7 @@ main {
   // display: block; /* Переключаем на блочное отображение */
   // height: 800px; /* Задаём высоту области прокрутки */
   overflow-y: auto; /* Добавляем возможность прокрутки */
+  // overflow-x: auto;
   display: table-row-group;
 }
 

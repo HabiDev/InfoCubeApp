@@ -1,0 +1,11 @@
+tr id="#{dom_id(division)}"
+  td.text-truncate
+    = division.name
+  td.text-truncate
+    = division.store_id
+  td.text-truncate
+    = division.organization
+  td.text-end.px-3
+    span.d-block.font-weight-bold
+      = render "divisions/control", division: division
+

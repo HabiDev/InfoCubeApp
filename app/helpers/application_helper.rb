@@ -1,5 +1,6 @@
 module ApplicationHelper
-  # include Pagy::Frontend
+  include Pagy::Frontend
+  
   ALERTS = { alert: 'warning', 
     notice: 'info',
     success: 'success',

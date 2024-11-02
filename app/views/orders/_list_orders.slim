@@ -1,0 +1,79 @@
+.row
+  .col-12.col-md-12.text-end
+    - if current_user&.admin? || current_user&.moderator?
+      = link_to "#{t('button.import')}", import_file_orders_path, class: "btn btn-outline-primary btn-sm mx-4", data: { turbo_frame: "modal_form" }
+  / .row.mt-2.p-0.mx-0
+  /   = render 'search_form'
+  .row 
+    = "Кол-во записей: #{@count_orders}"
+  hr.mb-0
+.row
+  .contetnt-orders[data-controller="my-loading" data-action="turbo:before-fetch-request@document->my-loading#displayOrdersLoading turbo:before-fetch-response@document->my-loading#displayContentOrders"]
+    = render 'shared/loading_data' 
+    .col-12.col-md-12.mt-3
+      = turbo_frame_tag "orders"
+        .row
+          == pagy_bootstrap_nav(@pagy)
+        .container-fluid
+          .fixed-header.small.small
+            table.table.table-striped
+                thead.table-primary.thead
+                  tr
+                    / th
+                    /   / = sort_link(@q, :release_at, class: 'd-block text-decoration-none text-dark')
+                    /   = t("#{@orders.model.human_attribute_name(:shop_format)}") 
+                    / th
+                    /   / = sort_link(@q, :owner_card, class: 'd-block text-decoration-none text-dark')
+                    /   = t("#{@orders.model.human_attribute_name(:manager_shop)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:store_id)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:store)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:provider)}")
+                    / th
+                    /   / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    /   = t("#{@orders.model.human_attribute_name(:product_group)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:required)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:product)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:day_store)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:sales)}")   
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:remainder)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:average_sales)}")  
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:to_order)}")  
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:quantum)}")  
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:availability_order)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:next_order)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@orders.model.human_attribute_name(:cal_day_order)}")                                                                         
+                    
+                    / th.text-end.font-weight-bold.px-3
+                    /   i.bi.bi-grip-vertical       
+                tbody#body-orders[data-my-loading-target="contentOrders"]
+                  = render @orders
+                    .row.fixed-bottom
+                      == pagy_bootstrap_nav(@pagy).html_safe if @orders&.exists?

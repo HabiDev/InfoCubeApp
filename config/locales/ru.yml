@@ -15,17 +15,40 @@ ru:
           moderator: Модератор
           user: Пользователь      
     models:
-      user: Сотрудник
-      profile: Профиль  
+      user: Пользователь
+      profile: Профиль 
+      division: Подразделения 
     attributes:
-      user:        
+      user:
+        full_name: Пользователь        
         type_role: Роль в системе
         email: E-mail
         password: Пароль
         password_confirmation: Подтверждение пароля        
       profile:
-        full_name: Фамилия Имя Отчество
-        mobile: Телефон        
+        full_name: Пользователь
+        mobile: Телефон   
+      division:
+        name: Название
+        store_id: Код 
+        organization: Организация 
+      order:
+        store_id: Склад
+        store: Склад
+        provider: Поставщик
+        product_group: Группа
+        required: Обязательный
+        product: Наименование
+        day_store: Кол-во дней присуст
+        sales: Продажи
+        remainder: Остаток
+        average_sales: Среднедн/продажи
+        to_order: К заказу
+        quantum: Квант
+        availability_order: Наличие заказа
+        next_order: Следущий заказ
+        cal_day_order: Расчет дней
+    
   date:
     abbr_day_names:
     - Вс

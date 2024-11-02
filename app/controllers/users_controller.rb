@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, except: [ :index, :new, :create]
+  before_action :set_user, except: [ :index, :new, :create ]
   
   def index
     # authorize User
-    # @q = User.includes(:profile).where(admin: false).search(params[:q])
-    # @q.sorts = ['profile_surname asc', 'created_at desc'] if @q.sorts.empty?
-    # @users = @q.result(disinct: true)
-    @pagy, @users = pagy(User.all, items: mobile_device? ? 3 : 10) 
+    @q = User.includes(:profile).ransack(params[:q])
+    @q.sorts = ['full_name asc'] if @q.sorts.empty?
+    @count_users = @q.result.count
+    @pagy, @users = pagy(@q.result(disinct: true), items: 20) 
   end
 
   def new
@@ -44,8 +44,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    # authorize @user
-    
+    # authorize @user    
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_path, notice: t('notice.record_edit') }
@@ -120,5 +119,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :type_role, :password, :password_confirmation, 
                                  profile_attributes: [:full_name, :mobile])
   end
-
 end

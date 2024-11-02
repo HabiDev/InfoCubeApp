@@ -1,0 +1,15 @@
+= simple_form_for @division do |f|
+  = f.error_notification
+  .row
+    .col-12.col-md-4
+      = f.input :store_id, required: true, autofocus: true, class: 'form-control form-control-sm' 
+  .row
+    .col-12.col-md-10
+      = f.input :name, required: true, autofocus: true, class: 'form-control form-control-sm' 
+  .row
+    .col-12.col-md-8
+      = f.input :organization, required: true, autofocus: true, class: 'form-control form-control-sm' 
+  .row  
+    .col-12.col-md-12.text-end
+      span.p-2
+        = f.submit "#{t('submit.save')}", class: "btn btn-primary"

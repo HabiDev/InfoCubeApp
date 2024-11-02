@@ -14,8 +14,13 @@ ru:
     create: Создание
     edit: Редактирование
     reset_password: Изменение пароля
+    select: Выбирите заказ
   photos:
     create: Прекрепить фото
+  divisions:
+    title: Склады
+  orders:
+    title: Заказ (16 поставщиков)
   shared:
     errors:
       header:

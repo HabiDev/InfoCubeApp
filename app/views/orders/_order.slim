@@ -1,0 +1,40 @@
+tr id="#{dom_id(order)}"
+  / td.text-truncate
+  /   = order.shop_format
+  / td.text-truncate
+  /   = order.manager_shop
+  td.text-truncate
+    = order.store_id
+  td.text-truncate
+    = order.store
+  td.text-truncate
+    = order.provider
+  / td.text-truncate
+  /   = order.product_group
+  td.text-truncate
+    = order.required
+  td.text-truncate
+    = order.product
+  td.text-truncate
+    = order.day_store
+  td.text-truncate
+    = order.sales
+  td.text-truncate
+    = order.remainder
+  td.text-truncate
+    = number_with_precision(order.average_sales, precision: 1)
+    / = order.average_sales
+  td.text-truncate
+    = order.to_order
+  td.text-truncate
+    = order.quantum
+  td.text-truncate
+    = order.availability_order
+  td.text-truncate
+    = order.next_order
+  td.text-truncate
+    = order.cal_day_order
+  / td.text-end.px-3
+  /   span.d-block.font-weight-bold
+  /     = render "divisions/control", division: division
+

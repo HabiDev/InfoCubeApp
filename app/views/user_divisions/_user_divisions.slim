@@ -1,0 +1,8 @@
+ol
+  - resource&.user_divisions.find_each do |user_division| 
+    = turbo_frame_tag user_division
+      li
+        = user_division.division.name
+        - if current_user.admin?
+          / = link_to '(x)', destroy_photo_task_path(photo_id: photo.id, id: resource.id), data: { turbo_method: :delete }, class: "small text-danger"
+          = link_to '(X)', user_division, data: { turbo_method: :delete }, class: "text-danger mx-2"

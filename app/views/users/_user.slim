@@ -1,0 +1,11 @@
+tr id="#{dom_id(user)}"
+  td.text-truncate
+    = user.full_name
+  / td.text-truncate
+  /   = user.store_id
+  / td.text-truncate
+  /   = user.organization
+  td.text-end.px-3
+    span.d-block.font-weight-bold
+      = render "users/control", user: user
+

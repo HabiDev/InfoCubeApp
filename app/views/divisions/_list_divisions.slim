@@ -1,0 +1,38 @@
+.row
+  .col-12.col-md-12.text-end
+    - if current_user&.admin? || current_user&.moderator?
+      = link_to "#{t('button.import')}", import_file_divisions_path, class: "btn btn-outline-primary btn-sm mx-4", data: { turbo_frame: "modal_form" }
+      = link_to "#{t('button.new')}", new_division_path, class: "btn btn-outline-success btn-sm", data: { turbo_frame: "modal_form" }
+  .row.mt-2.p-0.mx-0
+    = render 'search_form'
+  .row 
+    = "Кол-во записей: #{Division.count}"
+  hr.mb-0
+.row
+  .contetnt-divisions[data-controller="my-loading" data-action="turbo:before-fetch-request@document->my-loading#displayDivisionsLoading turbo:before-fetch-response@document->my-loading#displayContentDivisions"]
+    = render 'shared/loading_data' 
+    .col-12.col-md-12.mt-3
+      = turbo_frame_tag "divisions"
+        .row
+          == pagy_bootstrap_nav(@pagy)
+        .container
+          .fixed-header
+            table.table
+                thead.table-primary.thead
+                  tr
+                    th
+                      / = sort_link(@q, :release_at, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@divisions.model.human_attribute_name(:name)}") 
+                    th
+                      / = sort_link(@q, :owner_card, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@divisions.model.human_attribute_name(:store_id)}")
+                    th
+                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = t("#{@divisions.model.human_attribute_name(:organization)}")
+                    
+                    th.text-end.font-weight-bold.px-3
+                      i.bi.bi-grip-vertical       
+                tbody#body-divisions[data-my-loading-target="contentDivisions"]
+                  = render @divisions
+
+

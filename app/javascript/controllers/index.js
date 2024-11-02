@@ -10,6 +10,9 @@ application.register("flatpickr", FlatpickrController)
 import MyModalController from "./my_modal_controller"
 application.register("my-modal", MyModalController)
 
+import ModalAddController from "./modal_add_controller"
+application.register("modal-add", ModalAddController)
+
 import MyLoadingController from "./my_loading_controller"
 application.register("my-loading", MyLoadingController)
 
