@@ -23,9 +23,9 @@
                     th
                       / = sort_link(@q, :release_at, class: 'd-block text-decoration-none text-dark')
                       = t("#{@divisions.model.human_attribute_name(:name)}") 
-                    th
-                      / = sort_link(@q, :owner_card, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@divisions.model.human_attribute_name(:store_id)}")
+                    / th
+                    /   / = sort_link(@q, :owner_card, class: 'd-block text-decoration-none text-dark')
+                    /   = t("#{@divisions.model.human_attribute_name(:store_id)}")
                     th
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                       = t("#{@divisions.model.human_attribute_name(:organization)}")

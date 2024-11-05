@@ -1,79 +1,73 @@
 .row
-  .col-12.col-md-12.text-end
+  .col-3.col-md-3.fw-bold.text-muted.mt-2.mb-0.pb-0
+    = "Кол-во записей: #{@count_orders}"
+  .col-9.col-md-9.text-end
     - if current_user&.admin? || current_user&.moderator?
       = link_to "#{t('button.import')}", import_file_orders_path, class: "btn btn-outline-primary btn-sm mx-4", data: { turbo_frame: "modal_form" }
   / .row.mt-2.p-0.mx-0
   /   = render 'search_form'
-  .row 
-    = "Кол-во записей: #{@count_orders}"
-  hr.mb-0
+  hr.mb-0.mt-2
 .row
   .contetnt-orders[data-controller="my-loading" data-action="turbo:before-fetch-request@document->my-loading#displayOrdersLoading turbo:before-fetch-response@document->my-loading#displayContentOrders"]
     = render 'shared/loading_data' 
-    .col-12.col-md-12.mt-3
+    .col-12.col-md-12.mt-2
       = turbo_frame_tag "orders"
-        .row
-          == pagy_bootstrap_nav(@pagy)
-        .container-fluid
+        / .row
+        /   == pagy_bootstrap_nav(@pagy)
+        .container-fluid.sticky-top
           .fixed-header.small.small
-            table.table.table-striped
-                thead.table-primary.thead
+            table.table.table-bordered.table-sm
+                thead.table-primary.align-middle
                   tr
-                    / th
-                    /   / = sort_link(@q, :release_at, class: 'd-block text-decoration-none text-dark')
-                    /   = t("#{@orders.model.human_attribute_name(:shop_format)}") 
-                    / th
-                    /   / = sort_link(@q, :owner_card, class: 'd-block text-decoration-none text-dark')
-                    /   = t("#{@orders.model.human_attribute_name(:manager_shop)}")
-                    th
+                    th.small colspan="2"
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:store_id)}")
-                    th
+                      = "Наименование"
+                    th.small
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:store)}")
-                    th
+                      = "Обязат."
+                    th.small
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:provider)}")
-                    / th
-                    /   / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    /   = t("#{@orders.model.human_attribute_name(:product_group)}")
-                    th
+                      = "Продажи"
+                    th.small.text-center rowspan="2"
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:required)}")
-                    th
+                      = "Остат."
+                    th.small.text-center.text-nowrap
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:product)}")
-                    th
+                      = "К зак." 
+                    th.small.text-wrap.text-center rowspan="2"
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:day_store)}")
-                    th
+                      = "Нал. зак."
+                    th.small.text-nowrap
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:sales)}")   
-                    th
+                      = "След. зак."
+  
+
+                  tr
+                    th.small
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:remainder)}")
-                    th
+                      = "Склад"                    
+                    th.small
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:average_sales)}")  
-                    th
+                      = "Поставщик"
+                    th.small.text-nowrap
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:to_order)}")  
-                    th
+                      = "К-во дн. присуст."
+                    th.small.text-wrap
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:quantum)}")  
-                    th
+                      = "Сред.дн."
+                    th.small
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:availability_order)}")
-                    th
+                      = "Квант"
+                    th.small.text-nowrap
                       / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:next_order)}")
-                    th
-                      / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = t("#{@orders.model.human_attribute_name(:cal_day_order)}")                                                                         
+                      = "Расч. дн." 
+
+                                                                    
                     
                     / th.text-end.font-weight-bold.px-3
                     /   i.bi.bi-grip-vertical       
                 tbody#body-orders[data-my-loading-target="contentOrders"]
                   = render @orders
-                    .row.fixed-bottom
-                      == pagy_bootstrap_nav(@pagy).html_safe if @orders&.exists?
+                caption
+                  / .row.fixed-bottom
+                  == pagy_bootstrap_nav(@pagy).html_safe if @pagy.pages > 1

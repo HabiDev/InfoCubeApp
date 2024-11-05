@@ -5,12 +5,18 @@ class OrdersController < ApplicationController
     # authorize Division
     if current_user.admin? || current_user.moderator?
       @q = Order.ransack(params[:q])
+      @order_divisions = Division.all
     else
-      @q = Order.current_divisions(current_user.divisions.pluck(:store_id)).ransack(params[:q])
+      @q = Order.current_divisions(current_user.divisions.pluck(:id)).ransack(params[:q])
+      @order_divisions = current_user.divisions
     end
+    @order_providers = @q.result.provider
+    @order_products = @q.result.product
+    @order_product_groups = @q.result.product_group
+    @availability_orders = @q.result.availability_order
+    @count_orders = @q.result.count    
+    @pagy, @orders = pagy(@q.result(disinct: true))
     @q.sorts = ['store asc' ] if @q.sorts.empty?
-    @count_orders = @q.result.count
-    @pagy, @orders = pagy(@q.result(disinct: true), items: 15)
   end
 
   def import

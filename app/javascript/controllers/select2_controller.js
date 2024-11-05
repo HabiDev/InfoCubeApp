@@ -61,6 +61,8 @@ export default class extends Controller {
     $('#order-product-select').select2(); 
     $('#order-provider-select').select2(); 
     $('#order-store-select').select2(); 
+    $('#order-availability-order-select').select2(); 
+    
     // $('#single-select-sub_category-task-search').select2(); 
 
     // this.showWorkload();

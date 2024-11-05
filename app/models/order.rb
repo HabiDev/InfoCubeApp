@@ -1,10 +1,12 @@
 class Order < ApplicationRecord
+  belongs_to :division, class_name: "Division", foreign_key: "store_id", optional: true
 
   # default_scope { order(store: :asc) }
 
   scope :provider, -> { where.not(provider: nil).order(:provider).distinct.pluck(:provider) }
   scope :product_group, -> { where.not(product_group: nil).order(:product_group).distinct.pluck(:product_group) }
   scope :product, -> { where.not(product: nil).order(:product).distinct.pluck(:product) }
+  scope :availability_order, -> { where.not(availability_order: nil).order(:availability_order).distinct.pluck(:availability_order) }
 
   scope :current_divisions, ->(divisions_ids) { where(store_id: divisions_ids)}
 
@@ -21,7 +23,7 @@ class Order < ApplicationRecord
   end
 
   def self.import(file)
-    accessible_attributes = [ 'store_id', 'store', 'provider', 
+    accessible_attributes = [ 'store_id', 'provider', 
                               'product_group', 'required', 'product', 'day_store', 'sales', 
                               'remainder', 'average_sales', 'to_order', 'quantum', 
                               'availability_order', 'next_order', 'cal_day_order']

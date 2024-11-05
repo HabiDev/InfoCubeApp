@@ -1,5 +1,6 @@
 class Division < ApplicationRecord
-  has_many :division, dependent: :destroy
+  has_many :orders, class_name: "Order", foreign_key: "store_id", dependent: :destroy
+  has_many :user_divisions, dependent: :destroy
 
   scope :except_user_divisions, ->(divisions_ids) { where.not(id: divisions_ids) }
 
@@ -12,13 +13,13 @@ class Division < ApplicationRecord
   end
 
   def self.import(file)
-    accessible_attributes = ['store_id','name', 'organization']
+    accessible_attributes = ['id','name', 'organization']
 
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      division = find_by_store_id(row["store_id"]) || new
+      division = find_by_id(row["id"]) || new
       division.attributes = row.to_hash.slice(*accessible_attributes)
       division.save
     end
