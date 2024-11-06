@@ -13,11 +13,10 @@
     = render 'shared/loading_data' 
     .col-12.col-md-12.mt-3
       = turbo_frame_tag "divisions"
-        .row
-          == pagy_bootstrap_nav(@pagy)
         .container
-          .fixed-header
-            table.table
+          .catalog
+            .fixed-header
+              table.table
                 thead.table-primary.thead
                   tr
                     th
@@ -34,5 +33,7 @@
                       i.bi.bi-grip-vertical       
                 tbody#body-divisions[data-my-loading-target="contentDivisions"]
                   = render @divisions
+          .mt-3.stiky-bottom
+            == pagy_bootstrap_nav(@pagy).html_safe if @pagy.pages > 1
 
 

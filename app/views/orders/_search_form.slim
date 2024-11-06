@@ -1,21 +1,27 @@
 = search_form_for (@q), builder: SimpleForm::FormBuilder do |f|
-  .row
-    .col-12
-      = f.input :store_id_in, collection: @order_divisions, label_method: :name, value_method: :id, label: "Склад", input_html: { id: "order-store-select", class: "form-control form-control-sm select2-multiple", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-  .row
-    .col-12
-      = f.input :provider_cont_any, collection: @order_providers, label: "Поставщик", input_html: { id: "order-provider-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-  .row
-    .col-12
-      = f.input :product_group_cont_any, collection: @order_product_groups, label: "Группа", input_html: { id: "order-product-group-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-  .row
-    .col-12
-      = f.input :product_cont_any, collection: @order_products, label: "Наименование", input_html: { id: "order-product-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-
-  .row
-    .col-12
-      = f.input :availability_order_in, collection: @availability_orders, label: "Наличие заказа", input_html: { id: "order-availability-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-       
+  .container-fluid
+    .row
+      .col-12.text-end
+        = f.submit t('submit.search'), class: 'btn btn-outline-primary mx-1'
+        = link_to t('submit.clear'), request.path, class: 'btn btn-outline-primary mx-1'
+    .row
+      .col-12.small
+        = f.input :store_id_in, collection: @order_divisions, label_method: :name, value_method: :id, label: "Склад", input_html: { id: "order-store-select", class: "form-control form-control-sm text-truncate", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+    .row
+      .col-12
+        = f.input :provider_cont_any, collection: @order_providers, label: "Поставщик", input_html: { id: "order-provider-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+    .row
+      .col-12
+        = f.input :product_group_cont_any, collection: @order_product_groups, label: "Группа", input_html: { id: "order-product-group-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+    .row
+      .col-12
+        = f.input :product_cont_any, collection: @order_products, label: "Наименование", input_html: { id: "order-product-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+    .row
+      .col-12
+        = f.input :availability_order_in, collection: @availability_orders, label: "Наличие заказа", input_html: { id: "order-availability-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+    .row
+      .col-12
+        = f.input :to_order_in, collection: @to_orders, label: "К заказу", input_html: { id: "order-to-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
   / .row
   /   .col-12
   /     = f.input :store_eq, collection: Division.all, label_method: :full_name, value_method: :full_name, label: "Склад", input_html: { class: "form-control form-control-sm" }
@@ -31,7 +37,7 @@
   / .row
   /   .col-12
   /     = f.input :status_eq,  collection: Task.statuses.map {|k, v| [t("activerecord.enums.task.statuses.#{k}"), v]}, label: "Статус заявки", input_html: { class: "form-control form-control-sm" }  
-  .row
-    .col-12.text-end
-      = f.submit t('submit.search'), class: 'btn btn-outline-primary mx-1'
-      = link_to t('submit.clear'), request.path, class: 'btn btn-outline-primary mx-1'
+  / .row
+  /   .col-12.text-end
+  /     = f.submit t('submit.search'), class: 'btn btn-outline-primary mx-1'
+  /     = link_to t('submit.clear'), request.path, class: 'btn btn-outline-primary mx-1'

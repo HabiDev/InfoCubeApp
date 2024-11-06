@@ -7,7 +7,7 @@ class DivisionsController < ApplicationController
     @q = Division.ransack(params[:q])
     @q.sorts = ['name asc' ] if @q.sorts.empty?
     # @divisions = @q.result(disinct: true)
-    @pagy, @divisions = pagy(@q.result(disinct: true), items: 15) 
+    @pagy, @divisions = pagy(@q.result(disinct: true)) 
   end
 
   def new

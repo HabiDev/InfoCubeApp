@@ -40,12 +40,10 @@ export default class extends Controller {
       searching: function() { return "Поиск…" },
       
       removeAllItems: function() { return "Удалить все элементы" }
-
+      
     });
-
-    console.log('Ok')
-
-    $('#select-card-sub-statement').select2({ dropdownParent: $('#modalNewEdit') });
+      
+    // $('#select-card-sub-statement').select2({ dropdownParent: $('#modalNewEdit') });
     // $('#single-select-division-task').select2({ dropdownParent: $('#modalNewEdit') });
     // $('#single-select-subcategory-completed').select2();
 
@@ -62,6 +60,44 @@ export default class extends Controller {
     $('#order-provider-select').select2(); 
     $('#order-store-select').select2(); 
     $('#order-availability-order-select').select2(); 
+    $('#order-to-order-select').select2({     
+      multiple: true,
+      allowClear: false  
+    });   
+    
+    $('#order-to-order-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
+    $('#order-availability-order-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
+    $('#order-provider-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
+    $('#order-product-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
+    $('#order-product-group-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
+    $('#order-store-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
+     
+    $('.select-all').on('click', function (e) {
+      selectAllSelect2($(this).siblings('.selection').find('.select2-search__field'));
+    });
+        
+    function selectAllSelect2(that) {
+   
+      var selectAll = true;
+      var existUnselected = false;
+      var item = $(that.parents("span[class*='select2-container']").siblings('select[multiple]'));
+      
+      item.find("option").each(function (k, v) {
+        if (!$(v).prop('selected')) {          
+          existUnselected = true;
+          return false;
+        }
+         
+      });
+    
+      selectAll = existUnselected ? selectAll : !selectAll; 
+      
+      item.find("option").prop('selected', selectAll);
+      item.trigger('change');
+    }
+
+   
+    
     
     // $('#single-select-sub_category-task-search').select2(); 
 

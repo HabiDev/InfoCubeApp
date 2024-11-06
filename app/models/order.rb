@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   scope :product_group, -> { where.not(product_group: nil).order(:product_group).distinct.pluck(:product_group) }
   scope :product, -> { where.not(product: nil).order(:product).distinct.pluck(:product) }
   scope :availability_order, -> { where.not(availability_order: nil).order(:availability_order).distinct.pluck(:availability_order) }
+  scope :to_order, -> { where.not(to_order: nil).order(:to_order).distinct.pluck(:to_order) }
 
   scope :current_divisions, ->(divisions_ids) { where(store_id: divisions_ids)}
 

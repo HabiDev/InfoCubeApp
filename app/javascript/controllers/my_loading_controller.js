@@ -22,7 +22,7 @@ export default class extends Controller {
   displayDivisionsLoading(event) {
     // const balanceContent = document.getElementById("balance_" + cardIdValue)
     this.loadingTarget.classList.remove('d-none');
-    this.contentCardsTarget.classList.add('d-none');
+    this.contentDivisionsTarget.classList.add('d-none');
     // balanceContent.classList.add('d-none');
     console.log(event.detail.url)
   }
@@ -30,14 +30,14 @@ export default class extends Controller {
   displayContentDivisions() {
     // const balanceContent = document.getElementById("balance_#{cardIdValue}")
     this.loadingTarget.classList.add('d-none');
-    this.contentCardsTarget.classList.remove('d-none');
+    this.contentDivisionsTarget.classList.remove('d-none');
     // balanceContent.classList.remove('d-none');
   }
 
   displayOrdersLoading(event) {
     // const balanceContent = document.getElementById("balance_" + cardIdValue)
     this.loadingTarget.classList.remove('d-none');
-    this.contentCardsTarget.classList.add('d-none');
+    this.contentOrdersTarget.classList.add('d-none');
     // balanceContent.classList.add('d-none');
     console.log(event.detail.url)
   }
@@ -45,7 +45,7 @@ export default class extends Controller {
   displayContentOrders() {
     // const balanceContent = document.getElementById("balance_#{cardIdValue}")
     this.loadingTarget.classList.add('d-none');
-    this.contentCardsTarget.classList.remove('d-none');
+    this.contentOrdersTarget.classList.remove('d-none');
     // balanceContent.classList.remove('d-none');
   }
   
