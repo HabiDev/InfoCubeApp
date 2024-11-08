@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     @availability_orders = @q.result.availability_order
     @to_orders = @q.result.to_order
     @count_orders = @q.result.count    
-    @pagy, @orders = pagy(@q.result(disinct: true))
+    @pagy, @orders = pagy(@q.result(disinct: true), limit: 25)
     @q.sorts = ['store asc' ] if @q.sorts.empty?
   end
 

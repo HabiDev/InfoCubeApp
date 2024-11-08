@@ -1,36 +1,29 @@
 tr id="#{dom_id(order)}"
-  td.small.fw-bold.text-success colspan="2"
-    = order.product
-  td.small.fw-bold.text-success.text-center
-    = order.required
-  td.small.fw-bold.text-success.text-center
-    = order.sales
-  td.small.fw-bold.text-success.text-center rowspan="2"
-    = order.remainder
-  td.small.fw-bold.text-success.text-center
-    = order.to_order
-  td.small.fw-bold.text-success.text-center rowspan="2"
-    = order.availability_order
-  td.small.fw-bold.text-success.text-center
-    = order.next_order
-
-tr.small    
-  td.small.text-muted.fst-italic
+  td.small
     = order.division&.name
-  td.small.text-muted.text-end.fst-italic
+  td.small
     = order.provider
-  / td.text-truncate
-  /   = order.product_group
-  td.small.text-muted.text-end.fst-italic
+  td.small.
+    = order.product
+  td.small.text-end
+    = order.required
+  td.small.text-end
     = order.day_store
-  td.small.text-muted.text-end.fst-italic
+  td.small.text-end
+    = order.sales
+  td.small.text-end
+    = order.remainder
+  td.small.text-end
     = number_with_precision(order.average_sales, precision: 1)
-    / = order.average_sales
-
-  td.small.text-muted.text-end.fst-italic
-    = order.quantum
-
-  td.small.text-muted.text-end.fst-italic
+  td.small.text-end
+    = order.to_order
+  td.small.text-end
+    = order.quantum     
+  td.small.text-end
+    = order.availability_order
+  td.small.text-end
+    = order.next_order
+  td.small.text-end
     = order.cal_day_order
 
   / td.text-end.px-3

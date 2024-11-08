@@ -1,0 +1,39 @@
+tr id="#{dom_id(order)}"
+  td.small.fw-bold.text-success colspan="2"
+    = order.product
+  td.small.fw-bold.text-success.text-center
+    = order.required
+  td.small.fw-bold.text-success.text-center
+    = order.sales
+  td.small.fw-bold.text-success.text-center rowspan="2"
+    = order.remainder
+  td.small.fw-bold.text-success.text-center
+    = order.to_order
+  td.small.fw-bold.text-success.text-center rowspan="2"
+    = order.availability_order
+  td.small.fw-bold.text-success.text-center
+    = order.next_order
+
+tr.small    
+  td.small.text-muted.fst-italic
+    = order.division&.name
+  td.small.text-muted.text-end.fst-italic
+    = order.provider
+  / td.text-truncate
+  /   = order.product_group
+  td.small.text-muted.text-end.fst-italic
+    = order.day_store
+  td.small.text-muted.text-end.fst-italic
+    = number_with_precision(order.average_sales, precision: 1)
+    / = order.average_sales
+
+  td.small.text-muted.text-end.fst-italic
+    = order.quantum
+
+  td.small.text-muted.text-end.fst-italic
+    = order.cal_day_order
+
+  / td.text-end.px-3
+  /   span.d-block.font-weight-bold
+  /     = render "divisions/control", division: division
+

@@ -89,6 +89,12 @@ main {
       height: 715px; 
     }
   }
+
+  @media (min-width: 1350px) and (max-width: 1439px) {
+    .fixed-header {
+      height: 340px; 
+    }
+  }
   
   @media (min-width: 1440px) and (max-width: 1599px) {
     .fixed-header {
@@ -127,6 +133,12 @@ main {
   }
 }
 
+@media (min-width: 1350px) and (max-width: 1439px) {
+  .fixed-header {
+    height: 422px; 
+  }
+}
+
 @media (min-width: 901px) and (max-width: 1272px) {
   .fixed-header {
     height: 360px; 
@@ -147,13 +159,13 @@ main {
 
 @media (min-width: 1600px) and (max-width: 1919px){
   .fixed-header {
-    height: 720px;
+    height: 730px;
   } 
 }
 
 @media (min-width: 1920px) and (max-width: 2240px){
   .fixed-header {
-    height: 720px;
+    height: 730px;
   } 
 }
 

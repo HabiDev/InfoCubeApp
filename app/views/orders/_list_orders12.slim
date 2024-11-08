@@ -24,57 +24,50 @@
             table.table.table-bordered.table-sm
               thead.table-primary.align-middle.thead
                 tr
-                  th.small
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Склад"
-                    - if (params[:q].present?) && (params[:q][:store_id_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
-                  th.small
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Поставщик" 
-                    - if (params[:q].present?) && (params[:q][:provider_cont_any].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
-                  th.small
+                  th.small colspan="2"
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "Наименование"
-                  th.small.text-center
+                  th.small
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "Обязат."
-                  th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "К-во дн. присуст."
-                  th.small.text-center
+                  th.small
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "Продажи"
-                  th.small.text-center
+                  th.small.text-center rowspan="2"
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "Остат."
-                  th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Сред.дн. прод."
                   th.small.text-center.text-nowrap
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "К зак."
-                    - if (params[:q].present?) && (params[:q][:to_order_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill 
-                  th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Квант"                    
-                  th.small.text-center.text-nowrap
+                    = "К зак." 
+                  th.small.text-wrap.text-center rowspan="2"
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "Нал. зак."
-                    - if (params[:q].present?) && (params[:q][:availability_order_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
-                  th.small.text-center
+                  th.small.text-nowrap
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "След. зак."
-                  th.small.text-center
+
+
+                tr
+                  th.small
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Расч. дн."                                                                
+                    = "Склад"                    
+                  th.small
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Поставщик"
+                  th.small.text-nowrap
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "К-во дн. присуст."
+                  th.small.text-wrap
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Сред.дн."
+                  th.small
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Квант"
+                  th.small.text-nowrap
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Расч. дн." 
+
+                                                                  
                   
                   / th.text-end.font-weight-bold.px-3
                   /   i.bi.bi-grip-vertical       
@@ -83,5 +76,5 @@
           
                 / .row.fixed-bottom
 
-        .mt-2.stiky-bottom
+        .mt-3.stiky-bottom
           == pagy_bootstrap_nav(@pagy).html_safe if @pagy.pages > 1

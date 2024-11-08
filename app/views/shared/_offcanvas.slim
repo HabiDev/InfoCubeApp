@@ -5,9 +5,9 @@
 /     button.btn-close type="button" data-bs-dismiss="offcanvas" aria-label="Закрыть"
 /   .offcanvas-body
 #staticBackdrop.offcanvas.offcanvas-top data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel"
-  .offcanvas-header
+  .offcanvas-header.p-2
     h5#staticBackdropLabel.offcanvas-title
       | Фильтр
     button.btn-close type="button" data-bs-dismiss="offcanvas" aria-label="Закрыть"
-  .offcanvas-body
+  .offcanvas-body.p-0
     = render "orders/search_form"
