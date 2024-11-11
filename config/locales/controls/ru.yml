@@ -20,6 +20,7 @@ ru:
     lock_user: Заблокировать
     unlock_user: Разблокировать  
     import: Импорт(xls)
+    export_xls: Сохранить в Excel
   submit:
     create: Создать
     update: Обновить
