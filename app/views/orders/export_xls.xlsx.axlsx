@@ -33,7 +33,7 @@ wb.add_worksheet(name: "Автозаказ",
   sheet.add_row ["Склад", "Поставщик", "Наименование", "Обязат.", "К-во дн. присуст.", "Продажи", "Остат.", "Сред.дн. прод.", "К зак.", "Квант", "Нал. зак.", "След. зак.", "Расч. дн."], style: header, height: 30
   number = 1
  
-  @orders.each do |order| 
+  @xls.each do |order| 
     sheet.add_row [order.division&.name, order.provider, order.product, order.required, order.day_store, order.sales, order.remainder, number_with_precision(order.average_sales, precision: 1), order.to_order, order.quantum, order.availability_order, order.next_order, order.cal_day_order], style: Axlsx::STYLE_THIN_BORDER
   end
 

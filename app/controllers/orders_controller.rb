@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   
-  def index
+  def index   
     # authorize Division
     if current_user.admin? || current_user.moderator?
       @q = Order.ransack(params[:q])
@@ -15,13 +15,18 @@ class OrdersController < ApplicationController
     @order_product_groups = @q.result.product_group
     @availability_orders = @q.result.availability_order
     @to_orders = @q.result.to_order
-    $xls = @q.result
     @count_orders = @q.result.count
-    
+    @xls = @q.result(disinct: true)
     @pagy, @orders = pagy(@q.result(disinct: true), limit: 25)
+    
     @q.sorts = ['store asc' ] if @q.sorts.empty?
 
- 
+    respond_to do |format|
+      format.html
+      format.xlsx do
+        render xlsx: 'orders', template: 'orders/export_xls'
+      end
+    end
   end
 
   def import
@@ -36,13 +41,13 @@ class OrdersController < ApplicationController
 
   def import_file; end
 
-  def export_xls
-    respond_to do |format|
-      format.html
-      format.xlsx do
-        @orders = $xls
-        render xlsx: 'orders', template: 'orders/export_xls'
-      end
-    end
-  end
+  # def export_xls
+  #   respond_to do |format|
+  #     format.html
+  #     format.xlsx do
+  #       @orders = $xls
+  #       render xlsx: 'orders', template: 'orders/export_xls'
+  #     end
+  #   end
+  # end
 end

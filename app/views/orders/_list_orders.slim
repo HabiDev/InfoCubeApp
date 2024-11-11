@@ -7,7 +7,8 @@
       | Фильтр
     - if params[:q].present?
       = link_to t('submit.clear'), request.path, class: 'btn btn-outline-secondary btn-sm mx-1'
-      = link_to t('button.export_xls'), export_xls_path(format: "xlsx"), class: 'btn btn-outline-warning btn-sm mx-1'
+      / = link_to t('button.export_xls'), export_xls_path(format: "xlsx"), class: 'btn btn-outline-warning btn-sm mx-1'
+      = link_to t('button.export_xls'), orders_path(q: request.params[:q], format: 'xlsx'), class: 'btn btn-outline-warning btn-sm mx-1'
     - if current_user&.admin? || current_user&.moderator?
       = link_to "#{t('button.import')}", import_file_orders_path, class: "btn btn-outline-primary btn-sm mx-4", data: { turbo_frame: "modal_form" }
   / .row.mt-2.p-0.mx-0
