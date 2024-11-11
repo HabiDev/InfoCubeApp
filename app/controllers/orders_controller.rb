@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     @order_product_groups = @q.result.product_group
     @availability_orders = @q.result.availability_order
     @to_orders = @q.result.to_order
-    $xls = @q.result(disinct: true)
+    $xls = @q.result
     @count_orders = @q.result.count
     
     @pagy, @orders = pagy(@q.result(disinct: true), limit: 25)
