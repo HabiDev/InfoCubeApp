@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     @order_product_groups = @q.result.product_group
     @availability_orders = @q.result.availability_order
     @to_orders = @q.result.to_order
-    $xls = @q.result
+    $xls = @q.result(disinct: true)
     @count_orders = @q.result.count
     
     @pagy, @orders = pagy(@q.result(disinct: true), limit: 25)
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html
       format.xlsx do
-        @orders = $xls 
+        @orders = $xls
         render xlsx: 'orders', template: 'orders/export_xls'
       end
     end
