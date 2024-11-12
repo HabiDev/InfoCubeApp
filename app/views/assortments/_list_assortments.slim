@@ -53,6 +53,9 @@
                   th.small.text-center
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "Коммент."
+                    - if (params[:q].present?) && (params[:q][:comment_in].length > 1)
+                      span.mx-1.text-danger
+                        i.bi.bi-funnel-fill                    
                   th.small.text-center
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "Остаток"
