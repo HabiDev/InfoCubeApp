@@ -15,12 +15,15 @@ ru:
     edit: Редактирование
     reset_password: Изменение пароля
     select: Выбирите заказ
+    load: Загрузка данных
   photos:
     create: Прекрепить фото
   divisions:
     title: Склады
   orders:
     title: Заказ (16 поставщиков)
+  assortments:
+    title: Обязательный ассортимент
   shared:
     errors:
       header:

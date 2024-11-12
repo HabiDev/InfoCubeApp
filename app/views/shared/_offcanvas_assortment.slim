@@ -1,0 +1,13 @@
+/ #offcanvasWithBothOptions.offcanvas.offcanvas-top data-bs-scroll="true" tabindex="-1"  aria-labelledby="offcanvasWithBothOptionsLabel"
+/   .offcanvas-header
+/     h5#offcanvasWithBothOptionsLabel.offcanvas-title
+/       | Фон с прокруткой
+/     button.btn-close type="button" data-bs-dismiss="offcanvas" aria-label="Закрыть"
+/   .offcanvas-body
+#staticBackdropAssortment.offcanvas.offcanvas-top data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropAssortmentLabel"
+  .offcanvas-header.p-2
+    h5#staticBackdropAssortmentLabel.offcanvas-title
+      | Фильтр
+    button.btn-close type="button" data-bs-dismiss="offcanvas" aria-label="Закрыть"
+  .offcanvas-body.p-0
+    = render "assortments/search_form"

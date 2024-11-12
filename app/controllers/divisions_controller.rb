@@ -67,6 +67,7 @@ class DivisionsController < ApplicationController
     else
       flash.now[:error] = t('notice.record_imported_error')
     end
+    redirect_to divisions_path unless turbo_frame_request?
   end
 
   def import_file; end

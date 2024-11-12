@@ -1,0 +1,20 @@
+tr id="#{dom_id(assortment)}"
+  td.small
+    = assortment.division&.name
+  td.small
+    = assortment.provider
+  td.small
+    = assortment.product_id
+  td.small
+    = assortment.product
+  td.small.text-end
+    = assortment.comment
+  td.small.text-end
+    = number_with_precision(assortment.remainder, precision: 1)
+  td.small.text-end
+    = number_with_precision(assortment.sales, precision: 1)
+
+  / td.text-end.px-3
+  /   span.d-block.font-weight-bold
+  /     = render "divisions/control", division: division
+

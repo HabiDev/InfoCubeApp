@@ -1,0 +1,71 @@
+.row
+  .col-3.col-md-3.fw-bold.text-muted.mt-2.mb-0.pb-0
+    - if @assortments.present?
+      = "Кол-во записей: #{@count_assortments} (Актуально на: #{l(@assortments&.last.created_at, format: :small)})"
+    - else
+      = "Кол-во записей: #{@count_assortments}"
+  .col-9.col-md-9.text-end      
+    button.btn.btn-outline-success.btn-sm type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdropAssortment" aria-controls="staticBackdropAssortment"
+      i.bi.bi-funnel-fill
+      | Фильтр
+    - if params[:q].present?
+      = link_to t('submit.clear'), request.path, class: 'btn btn-outline-secondary btn-sm mx-1'
+      / = link_to t('button.export_xls'), export_xls_path(format: "xlsx"), class: 'btn btn-outline-warning btn-sm mx-1'
+      / = link_to t('button.export_xls'), assortments_path(q: request.params[:q], format: 'xlsx'), class: 'btn btn-outline-warning btn-sm mx-1'
+    - if current_user&.admin? || current_user&.moderator?
+      = link_to "#{t('button.import')}", import_file_assortments_path, class: "btn btn-outline-primary btn-sm mx-4", data: { turbo_frame: "modal_form" }
+  / .row.mt-2.p-0.mx-0
+  /   = render 'search_form'
+  hr.mb-0.mt-2
+.row
+  .contetnt-assortments.px-0.ps-0[data-controller="my-loading" data-action="turbo:before-fetch-request@document->my-loading#displayAssortmentsLoading turbo:before-fetch-response@document->my-loading#displayContentAssortments"]
+    = render 'shared/loading_data' 
+    .col-12.col-md-12.mt-2
+      = turbo_frame_tag "assortments"
+        / .row
+        /   == pagy_bootstrap_nav(@pagy)
+        .container-fluid.sticky-top.p-0
+          .fixed-header.small.small
+            table.table.table-bordered.table-sm
+              thead.table-primary.align-middle.thead
+                tr
+                  th.small
+                    / = sort_link(@q, :division, class: 'd-block text-decoration-none text-dark')
+                    = "Склад"
+                    - if (params[:q].present?) && (params[:q][:store_id_in].length > 1)
+                      span.mx-1.text-danger
+                        i.bi.bi-funnel-fill
+                  th.small
+                    / = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
+                    = "Поставщик" 
+                    - if (params[:q].present?) && (params[:q][:provider_cont_any].length > 1)
+                      span.mx-1.text-danger
+                        i.bi.bi-funnel-fill
+                  th.small.text-center
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Код товара"
+                  th.small
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Наименование"
+                    - if (params[:q].present?) && (params[:q][:product_cont_any].length > 1)
+                      span.mx-1.text-danger
+                        i.bi.bi-funnel-fill
+                  th.small.text-center
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Коммент."
+                  th.small.text-center
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Остаток"
+                  th.small.text-center
+                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Продажи (кол-во)"                                                            
+                  
+                  / th.text-end.font-weight-bold.px-3
+                  /   i.bi.bi-grip-vertical       
+              tbody#body-assortments[data-my-loading-target="contentAssortments"]
+                = render @assortments
+          
+                / .row.fixed-bottom
+
+        .mt-2.stiky-bottom
+          == pagy_bootstrap_nav(@pagy).html_safe if @pagy.pages > 1

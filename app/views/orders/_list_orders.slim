@@ -1,6 +1,9 @@
 .row
   .col-3.col-md-3.fw-bold.text-muted.mt-2.mb-0.pb-0
-    = "Кол-во записей: #{@count_orders}"
+    - if @orders.present?
+      = "Кол-во записей: #{@count_orders} (Актуально на: #{l(@orders.last.created_at, format: :small)})"
+    - else 
+      = "Кол-во записей: #{@count_orders}"
   .col-9.col-md-9.text-end      
     button.btn.btn-outline-success.btn-sm type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"
       i.bi.bi-funnel-fill
@@ -27,13 +30,13 @@
               thead.table-primary.align-middle.thead
                 tr
                   th.small
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    / = sort_link(@q, :division, class: 'd-block text-decoration-none text-dark')
                     = "Склад"
                     - if (params[:q].present?) && (params[:q][:store_id_in].length > 1)
                       span.mx-1.text-danger
                         i.bi.bi-funnel-fill
                   th.small
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    / = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
                     = "Поставщик" 
                     - if (params[:q].present?) && (params[:q][:provider_cont_any].length > 1)
                       span.mx-1.text-danger

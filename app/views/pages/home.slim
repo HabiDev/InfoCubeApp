@@ -6,4 +6,7 @@
             .card-title.h5.font-weight-bold.text-center
               = t('resource.select')
           .card-body.pb-0.m-4.text-center
-            = link_to t('orders.title'), orders_path, class: "btn btn-outline-success mx-4"  
+            .col-12
+              = link_to t('orders.title'), orders_path, class: "btn btn-outline-success m-2"
+            .col-12
+              = link_to t('assortments.title'), assortments_path, class: "btn btn-outline-success m-2"   

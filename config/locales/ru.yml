@@ -17,7 +17,8 @@ ru:
     models:
       user: Пользователь
       profile: Профиль 
-      division: Подразделения 
+      division: Подразделения
+      assortment: Ассортимент 
     attributes:
       user:
         full_name: Пользователь        
@@ -48,6 +49,15 @@ ru:
         availability_order: Наличие заказа
         next_order: Следущий заказ
         cal_day_order: Расчет дней
+      assortment:
+        store_id: Склад
+        provider: Поставщик
+        product_group: Группа
+        product: Наименование
+        comment: Комментария
+        sales: Продажи
+        remainder: Остаток
+       
     
   date:
     abbr_day_names:

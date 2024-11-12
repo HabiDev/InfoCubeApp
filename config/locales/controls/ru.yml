@@ -28,6 +28,7 @@ ru:
     save: Сохранить
     search: Найти
     clear: Сбросить
+    load: Загрузить
   caption:
     current_sign_in: в системе
     last_sign_in: последний сеанс

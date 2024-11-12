@@ -22,6 +22,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :assortments do
+    collection do 
+      post :import
+      get  :import_file
+    end
+  end
+
   resources :divisions do
     collection do 
       post :import

@@ -1,5 +1,6 @@
 class Division < ApplicationRecord
   has_many :orders, class_name: "Order", foreign_key: "store_id", dependent: :destroy
+  has_many :assortments, class_name: "Assortment", foreign_key: "store_id", dependent: :destroy
   has_many :user_divisions, dependent: :destroy
 
   scope :except_user_divisions, ->(divisions_ids) { where.not(id: divisions_ids) }

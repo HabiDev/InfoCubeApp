@@ -42,7 +42,22 @@ export default class extends Controller {
     console.log(event.detail.url)
   }
 
+  displayAssortmentsLoading(event) {
+    // const balanceContent = document.getElementById("balance_" + cardIdValue)
+    this.loadingTarget.classList.remove('d-none');
+    this.contentOrdersTarget.classList.add('d-none');
+    // balanceContent.classList.add('d-none');
+    console.log(event.detail.url)
+  }
+
   displayContentOrders() {
+    // const balanceContent = document.getElementById("balance_#{cardIdValue}")
+    this.loadingTarget.classList.add('d-none');
+    this.contentOrdersTarget.classList.remove('d-none');
+    // balanceContent.classList.remove('d-none');
+  }
+
+  displayContentAssortments() {
     // const balanceContent = document.getElementById("balance_#{cardIdValue}")
     this.loadingTarget.classList.add('d-none');
     this.contentOrdersTarget.classList.remove('d-none');
