@@ -50,4 +50,12 @@ module ApplicationHelper
   def render_turbo_stream_flash_messages
     turbo_stream.prepend "flash", partial: "shared/flash"
   end
+
+  def show_icon_filter(filter_column)
+    if (params[:q].present?)
+      if !params[:q][filter_column].nil? && params[:q][filter_column].length > 1
+        tag(:i, class: 'bi bi-funnel-fill mx-2 text-danger ')
+      end
+    end
+  end
 end

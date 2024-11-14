@@ -30,38 +30,30 @@
               thead.table-primary.align-middle.thead
                 tr
                   th.small
-                    / = sort_link(@q, :division, class: 'd-block text-decoration-none text-dark')
-                    = "Склад"
-                    - if (params[:q].present?) && (params[:q][:store_id_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
+                    = sort_link(@q, 'division_name', class: 'd-block text-decoration-none text-dark')
+                      = "Склад"
+                      = show_icon_filter(:store_id_in)
                   th.small
-                    / = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
-                    = "Поставщик" 
-                    - if (params[:q].present?) && (params[:q][:provider_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
+                    = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
+                      = "Поставщик" 
+                      = show_icon_filter(:provider_in)
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Код товара"
+                    = sort_link(@q, :product_id, class: 'd-block text-decoration-none text-dark')
+                      = "Код товара"
                   th.small
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Наименование"
-                    - if (params[:q].present?) && (params[:q][:product_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
+                    = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                      = "Наименование"
+                      = show_icon_filter(:product_in)
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Коммент."
-                    - if (params[:q].present?) && (params[:q][:comment_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill                    
+                    = sort_link(@q, :comment_in, class: 'd-block text-decoration-none text-dark')
+                      = "Коммент."
+                      = show_icon_filter(:comment_in)               
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Остаток"
+                    = sort_link(@q, :remainder, class: 'd-block text-decoration-none text-dark')
+                      = "Остаток"
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Продажи (кол-во)"                                                            
+                    = sort_link(@q, :sales, class: 'd-block text-decoration-none text-dark')
+                      = "Продажи (кол-во)"                                                            
                   
                   / th.text-end.font-weight-bold.px-3
                   /   i.bi.bi-grip-vertical       

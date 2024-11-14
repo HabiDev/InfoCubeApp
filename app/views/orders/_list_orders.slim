@@ -30,56 +30,48 @@
               thead.table-primary.align-middle.thead
                 tr
                   th.small
-                    / = sort_link(@q, :division, class: 'd-block text-decoration-none text-dark')
-                    = "Склад"
-                    - if (params[:q].present?) && (params[:q][:store_id_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
+                    = sort_link(@q, 'division_name', class: 'd-block text-decoration-none text-dark')
+                      = "Склад"
+                      = show_icon_filter(:store_id_in)
                   th.small
-                    / = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
-                    = "Поставщик" 
-                    - if (params[:q].present?) && (params[:q][:provider_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
+                    = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
+                      = "Поставщик" 
+                      = show_icon_filter(:provider_in)                      
                   th.small
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Наименование"
+                    = sort_link(@q, :product, class: 'd-block text-decoration-none text-dark')
+                      = "Наименование"
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Обязат."
+                    = sort_link(@q, :required, class: 'd-block text-decoration-none text-dark')
+                      = "Обязат."
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "К-во дн. присуст."
+                    = sort_link(@q, :day_store, class: 'd-block text-decoration-none text-dark')
+                      = "К-во дн. присуст."
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Продажи"
+                    = sort_link(@q, :sales, class: 'd-block text-decoration-none text-dark')
+                      = "Продажи"
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Остат."
+                    = sort_link(@q, :remainder, class: 'd-block text-decoration-none text-dark')
+                      = "Остат."
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Сред.дн. прод."
+                    = sort_link(@q, :average_sales, class: 'd-block text-decoration-none text-dark')
+                      = "Сред.дн. прод."
                   th.small.text-center.text-nowrap
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "К зак."
-                    - if (params[:q].present?) && (params[:q][:to_order_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill 
+                    = sort_link(@q, :to_order, class: 'd-block text-decoration-none text-dark')
+                      = "К зак."
+                      = show_icon_filter(:to_order_in)                   
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Квант"                    
+                    = sort_link(@q, :quantum, class: 'd-block text-decoration-none text-dark')
+                      = "Квант"                    
                   th.small.text-center.text-nowrap
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Нал. зак."
-                    - if (params[:q].present?) && (params[:q][:availability_order_in].length > 1)
-                      span.mx-1.text-danger
-                        i.bi.bi-funnel-fill
+                    = sort_link(@q, :availability_order, class: 'd-block text-decoration-none text-dark')
+                      = "Нал. зак."
+                      = show_icon_filter(:availability_order_in)                
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "След. зак."
+                    = sort_link(@q, :next_order, class: 'd-block text-decoration-none text-dark')
+                      = "След. зак."
                   th.small.text-center
-                    / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                    = "Расч. дн."                                                                
+                    = sort_link(@q, :cal_day_order, class: 'd-block text-decoration-none text-dark')
+                      = "Расч. дн."                                                                
                   
                   / th.text-end.font-weight-bold.px-3
                   /   i.bi.bi-grip-vertical       
