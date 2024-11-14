@@ -38,7 +38,7 @@
                   th.small
                     / = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
                     = "Поставщик" 
-                    - if (params[:q].present?) && (params[:q][:provider_matches_all].length > 1)
+                    - if (params[:q].present?) && (params[:q][:provider_in].length > 1)
                       span.mx-1.text-danger
                         i.bi.bi-funnel-fill
                   th.small.text-center
@@ -47,7 +47,7 @@
                   th.small
                     / = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
                     = "Наименование"
-                    - if (params[:q].present?) && (params[:q][:product_matches_all].length > 1)
+                    - if (params[:q].present?) && (params[:q][:product_in].length > 1)
                       span.mx-1.text-danger
                         i.bi.bi-funnel-fill
                   th.small.text-center
