@@ -1,8 +1,43 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_orders, only: [ :index ]
   
   def index   
-    # authorize Division
+    # # authorize Division 
+    respond_to do |format|
+      format.html
+      format.xlsx do
+        render xlsx: 'orders', template: 'orders/export_xls'
+      end
+    end
+  end
+
+  def import
+    if params[:file].present?
+      Order.delete_all
+      Order.import(params[:file])
+      
+      flash.now[:notice] = t('notice.record_imported')
+      set_orders
+    else
+      flash.now[:error] = t('notice.record_imported_error')
+    end
+    # redirect_to orders_path unless turbo_frame_request?
+  end
+
+  def import_file; end
+
+  # def export_xls
+  #   respond_to do |format|
+  #     format.html
+  #     format.xlsx do
+  #       @orders = $xls
+  #       render xlsx: 'orders', template: 'orders/export_xls'
+  #     end
+  #   end
+  # end
+
+  def set_orders
     if current_user.admin? || current_user.moderator?
       @q = Order.ransack(params[:q])
       @order_divisions = Division.all
@@ -17,38 +52,7 @@ class OrdersController < ApplicationController
     @to_orders = @q.result.to_order
     @count_orders = @q.result.count
     @xls = @q.result(disinct: true)
+    @q.sorts = ['store_id asc' ] if @q.sorts.empty?
     @pagy, @orders = pagy(@q.result(disinct: true), limit: 25)
-    
-    @q.sorts = ['store asc' ] if @q.sorts.empty?
-
-    respond_to do |format|
-      format.html
-      format.xlsx do
-        render xlsx: 'orders', template: 'orders/export_xls'
-      end
-    end
   end
-
-  def import
-    if params[:file].present?
-      Order.delete_all
-      Order.import(params[:file])
-      flash.now[:notice] = t('notice.record_imported')
-    else
-      flash.now[:error] = t('notice.record_imported_error')
-    end
-    redirect_to orders_path unless turbo_frame_request?
-  end
-
-  def import_file; end
-
-  # def export_xls
-  #   respond_to do |format|
-  #     format.html
-  #     format.xlsx do
-  #       @orders = $xls
-  #       render xlsx: 'orders', template: 'orders/export_xls'
-  #     end
-  #   end
-  # end
 end

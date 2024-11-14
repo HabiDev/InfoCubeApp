@@ -9,13 +9,13 @@
         = f.input :store_id_in, collection: @assortment_divisions, label_method: :name, value_method: :id, label: "Склад", input_html: { id: "order-store-select", class: "form-control form-control-sm text-truncate", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
     .row
       .col-12
-        = f.input :provider_cont_any, collection: @assortment_providers, label: "Поставщик", input_html: { id: "order-provider-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+        = f.input :provider_matches_all, collection: @assortment_providers, label: "Поставщик", input_html: { id: "order-provider-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
     .row
       .col-12
-        = f.input :product_cont_any, collection: @assortment_products, label: "Наименование", input_html: { id: "order-product-select", class: "m-0 form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+        = f.input :product_matches_all, collection: @assortment_products, label: "Наименование", input_html: { id: "order-product-select", class: "m-0 form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
     .row
       .col-12
-        = f.input :product_group_cont_any, collection: @assortment_product_groups, label: "Группа", input_html: { id: "order-product-group-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+        = f.input :product_group_matches_all, collection: @assortment_product_groups, label: "Группа", input_html: { id: "order-product-group-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
     .row  
       .col-12
         = f.input :comment_in, collection: @assortment_comment, label: "Комментария", input_html: { id: "order-availability-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }

@@ -18,7 +18,8 @@ ru:
       user: Пользователь
       profile: Профиль 
       division: Подразделения
-      assortment: Ассортимент 
+      assortment: Ассортимент
+      user_division: Склады(пользователя) 
     attributes:
       user:
         full_name: Пользователь        
@@ -32,7 +33,10 @@ ru:
       division:
         name: Название
         store_id: Код 
-        organization: Организация 
+        organization: Организация
+      user_division:
+        user_id: Пользователь
+        division_id: Склад 
       order:
         store_id: Склад
         store: Склад

@@ -1,2 +1,3 @@
-= turbo_stream.replace 'list_assortments', @assortments 
+= turbo_stream.replace 'search_assortments', partial: "assortments/search_form"
+= turbo_stream.replace 'list_assortments', partial: "assortments/list_assortments"
 = render_turbo_stream_flash_messages

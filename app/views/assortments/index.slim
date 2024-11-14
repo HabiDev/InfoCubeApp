@@ -1,7 +1,6 @@
 .container-fluid
-  .row
-    / .col-2.col-md-3.col-lg-3
-    /   = render 'navigator'
-    = render "shared/offcanvas_assortment"
-    .col-11.col-md-12.col-lg-12
+  / = turbo_frame_tag "search_assortments"
+  = render "shared/offcanvas_assortment"
+  .col-12.col-md-12.col-lg-12
+    #list_assortments
       = render 'list_assortments'
