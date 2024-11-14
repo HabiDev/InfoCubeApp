@@ -56,10 +56,10 @@ class AssortmentsController < ApplicationController
 
   def set_assortments
     if current_user.admin? || current_user.moderator?
-      @q = Assortment.ransack(params[:q])
+      @q = Assortment.includes(:division).ransack(params[:q])
       @assortment_divisions = Division.all
     else
-      @q = Assortment.current_divisions(current_user.divisions.pluck(:id)).ransack(params[:q])
+      @q = Assortment.includes(:division).current_divisions(current_user.divisions.pluck(:id)).ransack(params[:q])
       @assortment_divisions = current_user.divisions
     end
     @assortment_providers = @q.result.provider
@@ -70,7 +70,7 @@ class AssortmentsController < ApplicationController
     @assortment_comment = @q.result.comment
     @count_assortments = @q.result.count
     # @xls = @q.result(disinct: true)
-    @q.sorts = ['store_id asc, provider asc, product asc' ] if @q.sorts.empty?
+    @q.sorts = ['division_name asc', 'provider asc', 'product asc'] if @q.sorts.empty?
     @pagy, @assortments = pagy(@q.result(disinct: true), limit: 25)
 
     

@@ -39,10 +39,10 @@ class OrdersController < ApplicationController
 
   def set_orders
     if current_user.admin? || current_user.moderator?
-      @q = Order.ransack(params[:q])
+      @q = Order.includes(:division).ransack(params[:q])
       @order_divisions = Division.all
     else
-      @q = Order.current_divisions(current_user.divisions.pluck(:id)).ransack(params[:q])
+      @q = Order.includes(:division).current_divisions(current_user.divisions.pluck(:id)).ransack(params[:q])
       @order_divisions = current_user.divisions
     end
     @order_providers = @q.result.provider
@@ -51,8 +51,9 @@ class OrdersController < ApplicationController
     @availability_orders = @q.result.availability_order
     @to_orders = @q.result.to_order
     @count_orders = @q.result.count
+    # @xls = @q.result(disinct: true)
+    @q.sorts = ['division_name asc', 'provider asc', 'product asc'] if @q.sorts.empty?
     @xls = @q.result(disinct: true)
-    @q.sorts = ['store_id asc' ] if @q.sorts.empty?
     @pagy, @orders = pagy(@q.result(disinct: true), limit: 25)
   end
 end

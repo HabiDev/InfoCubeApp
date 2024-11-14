@@ -1,14 +1,14 @@
 class Assortment < ApplicationRecord
   belongs_to :division, class_name: "Division", foreign_key: "store_id", optional: true
 
-  # default_scope { order(store: :asc) }
+  default_scope { joins(:division).order(name: :asc, provider: :asc, product: :asc) }
 
-  scope :provider, -> { where.not(provider: nil).order(:provider).distinct.pluck(:provider) }
-  scope :product_group, -> { where.not(product_group: nil).order(:product_group).distinct.pluck(:product_group) }
-  scope :product, -> { where.not(product: nil).order(:product).distinct.pluck(:product) }
-  scope :remainder, -> { where.not(remainder: nil).order(:remainder).distinct.pluck(:remainder) }
-  scope :comment, -> { where.not(comment: nil).order(:comment).distinct.pluck(:comment) }
-  scope :sales, -> { where.not(sales: nil).order(:sales).distinct.pluck(:sales) }
+  scope :provider, -> { where.not(provider: nil).reorder(:provider).distinct.pluck(:provider) }
+  scope :product_group, -> { where.not(product_group: nil).reorder(:product_group).distinct.pluck(:product_group) }
+  scope :product, -> { where.not(product: nil).reorder(:product).distinct.pluck(:product) }
+  scope :remainder, -> { where.not(remainder: nil).reorder(:remainder).distinct.pluck(:remainder) }
+  scope :comment, -> { where.not(comment: nil).reorder(:comment).distinct.pluck(:comment) }
+  scope :sales, -> { where.not(sales: nil).reorder(:sales).distinct.pluck(:sales) }
 
   scope :current_divisions, ->(divisions_ids) { where(store_id: divisions_ids)}
 
