@@ -8,7 +8,7 @@ class UserDivisionsController < ApplicationController
   def new
     # authorize User
     @user_division = @user.user_divisions.build
-    @divisions_lists = Division.except_user_divisions(@user.user_divisions.pluck(:division_id))
+    @divisions_lists = Division.except_user_divisions(user_divisions.pluck(:division_id))
   end
 
   def create
