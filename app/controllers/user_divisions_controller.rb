@@ -8,7 +8,7 @@ class UserDivisionsController < ApplicationController
   def new
     # authorize User
     @user_division = @user.user_divisions.build
-    @divisions_lists = Division.except_user_divisions(user_divisions.pluck(:division_id))
+    @divisions_lists = Division.except_user_divisions(UserDivision.pluck(:division_id))
   end
 
   def create
@@ -19,7 +19,7 @@ class UserDivisionsController < ApplicationController
         format.turbo_stream { flash.now[:success] = t('notice.record_create') }
       else
         format.html { render :new, status: :unprocessable_entity }
-        @divisions_lists = Division.except_user_divisions(@user.user_divisions.pluck(:division_id))
+        @divisions_lists = Division.except_user_divisions(UserDivision.pluck(:division_id))
       end
     end
   end
