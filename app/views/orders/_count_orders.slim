@@ -1,0 +1,4 @@
+- if @orders.present?
+  = "Кол-во записей: #{@count_orders} (Актуально на: #{l(@orders.last.created_at, format: :small)})"
+- else 
+  = "Кол-во записей: #{@count_orders}"

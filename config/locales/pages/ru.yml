@@ -14,7 +14,7 @@ ru:
     create: Создание
     edit: Редактирование
     reset_password: Изменение пароля
-    select: Выбирите заказ
+    select: Выберите заказ
     load: Загрузка данных
   photos:
     create: Прекрепить фото
