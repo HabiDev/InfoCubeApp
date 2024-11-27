@@ -18,11 +18,13 @@
         = f.input :product_group_in, collection: @assortment_product_groups, label: "Группа", input_html: { id: "order-product-group-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
     .row  
       .col-12
-        = f.input :comment_in, collection: @assortment_comment, label: "Комментария", input_html: { id: "order-availability-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+        = f.input :remainder_in, collection: @assortment_remainder, label: "Остаток", input_html: { id: "order-availability-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+    
+    
     / .row
     /   .col-12
     /     = f.input :sales_in, collection: @assortment_sales, label: "К заказу", input_html: { id: "order-to-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-  / .row
+  / .rowы
   /   .col-12
   /     = f.input :store_eq, collection: Division.all, label_method: :full_name, value_method: :full_name, label: "Склад", input_html: { class: "form-control form-control-sm" }
   / .row

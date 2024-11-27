@@ -51,6 +51,7 @@
                   th.small.text-center
                     = sort_link(@q, :remainder, class: 'd-block text-decoration-none text-dark')
                       = "Остаток"
+                      = show_icon_filter(:remainder_in)  
                   th.small.text-center
                     = sort_link(@q, :sales, class: 'd-block text-decoration-none text-dark')
                       = "Продажи (кол-во)"                                                            
