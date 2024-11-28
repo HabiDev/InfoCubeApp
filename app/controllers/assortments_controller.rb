@@ -22,12 +22,12 @@ class AssortmentsController < ApplicationController
     
     # @q.sorts = ['store asc' ] if @q.sorts.empty?
 
-    # respond_to do |format|
-    #   format.html
-    #   format.xlsx do
-    #     render xlsx: 'orders', template: 'orders/export_xls'
-    #   end
-    # end
+    respond_to do |format|
+      format.html
+      format.xlsx do
+        render xlsx: 'assortments', template: 'assortments/export_xls'
+      end
+    end
   end
 
   def import
@@ -69,7 +69,7 @@ class AssortmentsController < ApplicationController
     @assortment_sales = @q.result.sales
     @assortment_comment = @q.result.comment
     @count_assortments = @q.result.count
-    # @xls = @q.result(disinct: true)
+    @xls = @q.result(disinct: true)
     @q.sorts = ['division_name asc', 'provider asc', 'product asc'] if @q.sorts.empty?
     @pagy, @assortments = pagy(@q.result(disinct: true), limit: 25)
 

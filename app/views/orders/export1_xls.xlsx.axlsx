@@ -27,7 +27,6 @@ row_aligment_vertical = wb_style.add_style alignment: { vertical: :center }
 wrap = wb_style.add_style alignment: {wrap_text: true, vertical: :center}, border: { style: :thin, color: 'FF000000' }
 row_borders = wb_style.add_style border: { style: :thin, color: 'FF000000' },  alignment: { vertical: :center }
 row_color = wb_style.add_style bg_color: '339CFF', border: { style: :thin, color: 'FF000000' }
-
 wb.add_worksheet(name: "Обяз. ассорт.", 
                  page_margins: margins,
                  page_setup: setup,
@@ -37,6 +36,7 @@ wb.add_worksheet(name: "Обяз. ассорт.",
   @xls.each do |assortment| 
     sheet.add_row [assortment.division&.name, assortment.product_group, assortment.provider, assortment.product_id, assortment.product, assortment.comment, assortment.remainder, assortment.sales], style: Axlsx::STYLE_THIN_BORDER
   end
-  sheet.auto_filter = "A1:H#{sheet.rows.count-1}"
-  sheet.column_widths 30, 28, 25, 12, 55, 14, 12, 12
+  sheet.auto_filter = "A1:M#{sheet.rows.count-1}"
+  sheet.column_widths 30, 25, 25, 10, 55, 14, 12, 12
 end
+

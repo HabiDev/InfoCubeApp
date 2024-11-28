@@ -26,18 +26,21 @@ row_aligment = wb_style.add_style alignment: { horizontal: :center, vertical: :c
 row_aligment_vertical = wb_style.add_style alignment: { vertical: :center }
 wrap = wb_style.add_style alignment: {wrap_text: true, vertical: :center}, border: { style: :thin, color: 'FF000000' }
 row_borders = wb_style.add_style border: { style: :thin, color: 'FF000000' },  alignment: { vertical: :center }
+cell_bacground = wb_style.add_style border: { style: :thin, color: 'FF000000' },  bg_color: '49D8FE'
 wb.add_worksheet(name: "Автозаказ", 
                  page_margins: margins,
                  page_setup: setup,
                  print_options: options) do |sheet| 
   sheet.add_row ["Склад", "Поставщик", "Наименование", "Обязат.", "К-во дн. присуст.", "Продажи", "Остат.", "Сред.дн. прод.", "К зак.", "Квант", "Нал. зак.", "След. зак.", "Расч. дн."], style: header, height: 30
-  number = 1
- 
+  # number = 1 
   @xls.each do |order| 
-    sheet.add_row [order.division&.name, order.provider, order.product, order.required, order.day_store, order.sales, order.remainder, number_with_precision(order.average_sales, precision: 1), order.to_order, order.quantum, order.availability_order, order.next_order, order.cal_day_order], style: Axlsx::STYLE_THIN_BORDER
+    sheet.add_row [order.division&.name, order.provider, order.product, order.required, order.day_store, order.sales, order.remainder, order.average_sales, order.to_order, order.quantum, order.availability_order, order.next_order, order.cal_day_order], style: Axlsx::STYLE_THIN_BORDER
+    # if sheet.rows.last.cells[3].value == 'ВСЕ'
+    #   sheet.rows.last.cells[2].style = cell_bacground
+    # end
   end
-
-  sheet.column_widths 30, 25, 60, 10, 10, 10, 8, 9, 8, 7, 7, 7, 7
+  sheet.auto_filter = "A1:M#{sheet.rows.count-1}"
+  sheet.column_widths 30, 25, 55, 14, 14, 14, 12, 13, 12, 12, 12, 12, 12
 
   # sheet.col_style 6, wrap, row_offset: 2
   # sheet.col_style 4, wrap, row_offset: 2
