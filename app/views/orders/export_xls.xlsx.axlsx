@@ -26,7 +26,8 @@ row_aligment = wb_style.add_style alignment: { horizontal: :center, vertical: :c
 row_aligment_vertical = wb_style.add_style alignment: { vertical: :center }
 wrap = wb_style.add_style alignment: {wrap_text: true, vertical: :center}, border: { style: :thin, color: 'FF000000' }
 row_borders = wb_style.add_style border: { style: :thin, color: 'FF000000' },  alignment: { vertical: :center }
-cell_bacground = wb_style.add_style border: { style: :thin, color: 'FF000000' },  bg_color: '49D8FE'
+cell_background = wb_style.add_style border: { style: :thin, color: 'FF000000' },  bg_color: 'B4C6E7'
+cell_background_yelloow = wb_style.add_style border: { style: :thin, color: 'FF000000' },  bg_color: 'FFFF00'
 wb.add_worksheet(name: "Автозаказ", 
                  page_margins: margins,
                  page_setup: setup,
@@ -34,16 +35,16 @@ wb.add_worksheet(name: "Автозаказ",
   sheet.add_row ["Склад", "Поставщик", "Наименование", "Обязат.", "К-во дн. присуст.", "Продажи", "Остат.", "Сред.дн. прод.", "К зак.", "Квант", "Нал. зак.", "След. зак.", "Расч. дн."], style: header, height: 30
   # number = 1 
   @xls.each do |order| 
-    sheet.add_row [order.division&.name, order.provider, order.product, order.required, order.day_store, order.sales, order.remainder, order.average_sales, order.to_order, order.quantum, order.availability_order, order.next_order, order.cal_day_order], style: Axlsx::STYLE_THIN_BORDER
+    sheet.add_row [order.division&.name, order.provider, order.product, order.required, order.day_store, order.sales, order.remainder, number_with_precision(order.average_sales, precision: 2), order.to_order, order.quantum, order.availability_order, order.next_order, order.cal_day_order], style: Axlsx::STYLE_THIN_BORDER
     if order.colored.present? && order.colored > 0
-      sheet.rows.last.cells[2].style = cell_bacground
+      sheet.rows.last.cells[2].style = cell_background
       # sheet.rows.last.cells[3].style = cell_bacground
     end
   end
   sheet.auto_filter = "A1:M#{sheet.rows.count-1}"
   sheet.column_widths 30, 25, 55, 14, 14, 14, 12, 13, 12, 12, 12, 12, 12
 
-  # sheet.col_style 6, wrap, row_offset: 2
+  sheet.col_style 8, cell_background_yelloow
   # sheet.col_style 4, wrap, row_offset: 2
   # sheet.col_style 0, row_borders, row_offset: 2
   # sheet.col_style 1, row_borders, row_offset: 2
