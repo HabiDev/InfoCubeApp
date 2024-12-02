@@ -16,7 +16,7 @@ class Order < ApplicationRecord
     ["availability_order", "average_sales", "cal_day_order", "created_at", 
       "day_store", "id", "next_order", "product", 
       "product_group", "provider", "quantum", "remainder", "required", 
-      "sales", "store_id", "store", "to_order", "updated_at"]
+      "sales", "store_id", "store", "to_order", "colored", "updated_at"]
   end
 
   def self.ransackable_associations(auth_object = nil)
@@ -27,7 +27,7 @@ class Order < ApplicationRecord
     accessible_attributes = [ 'store_id', 'provider', 
                               'product_group', 'required', 'product', 'day_store', 'sales', 
                               'remainder', 'average_sales', 'to_order', 'quantum', 
-                              'availability_order', 'next_order', 'cal_day_order']
+                              'availability_order', 'next_order', 'cal_day_order', 'colored']
 
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
