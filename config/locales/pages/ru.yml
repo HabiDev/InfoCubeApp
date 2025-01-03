@@ -22,6 +22,8 @@ ru:
     title: Склады
   orders:
     title: Заказ (16 поставщиков)
+  order_coolings:
+    title: Заказ (Охлажденка)
   assortments:
     title: Обязательный ассортимент
   shared:

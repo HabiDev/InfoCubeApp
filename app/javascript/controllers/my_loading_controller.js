@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="my-modal"
 export default class extends Controller {
-  static targets = [ 'content', 'loading', 'contentDivisions', 'contentOrders', 'link' ];
+  static targets = [ 'content', 'loading', 'contentDivisions', 'contentOrders', 'link', 'contentAssortments', 'contentOrderCoolings' ];
   static values = { balance: String };
 
   connect() {
@@ -45,7 +45,15 @@ export default class extends Controller {
   displayAssortmentsLoading(event) {
     // const balanceContent = document.getElementById("balance_" + cardIdValue)
     this.loadingTarget.classList.remove('d-none');
-    this.contentOrdersTarget.classList.add('d-none');
+    this.contentAssortmentsTarget.classList.add('d-none');
+    // balanceContent.classList.add('d-none');
+    console.log(event.detail.url)
+  }
+
+  displayOrderCoolingsLoading(event) {
+    // const balanceContent = document.getElementById("balance_" + cardIdValue)
+    this.loadingTarget.classList.remove('d-none');
+    this.contentOrderCoolingsTarget.classList.add('d-none');
     // balanceContent.classList.add('d-none');
     console.log(event.detail.url)
   }
@@ -60,7 +68,14 @@ export default class extends Controller {
   displayContentAssortments() {
     // const balanceContent = document.getElementById("balance_#{cardIdValue}")
     this.loadingTarget.classList.add('d-none');
-    this.contentOrdersTarget.classList.remove('d-none');
+    this.contentAssortmentsTarget.classList.remove('d-none');
+    // balanceContent.classList.remove('d-none');
+  }
+
+  displayContentOrderCoolings() {
+    // const balanceContent = document.getElementById("balance_#{cardIdValue}")
+    this.loadingTarget.classList.add('d-none');
+    this.contentOrderCoolingsTarget.classList.remove('d-none');
     // balanceContent.classList.remove('d-none');
   }
   

@@ -1,0 +1,84 @@
+.row
+  .col-6.col-md-6.fw-bold.text-muted.mt-2.mb-0.pb-0
+    - if @order_coolings.present?
+      = "Кол-во записей: #{@count_order_coolings} (Актуально на: #{l(@order_coolings.last.created_at, format: :small)})"
+    - else 
+      = "Кол-во записей: #{@count_order_coolings}"
+  .col-6.col-md-6.text-end      
+    button.btn.btn-outline-success.btn-sm type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdropOrderCooling" aria-controls="staticBackdropOrderCooling"
+      i.bi.bi-funnel-fill
+      | Фильтр
+    - if params[:q].present?
+      = link_to t('submit.clear'), request.path, class: 'btn btn-outline-secondary btn-sm mx-1'
+      / = link_to t('button.export_xls'), export_xls_path(format: "xlsx"), class: 'btn btn-outline-warning btn-sm mx-1'
+      = link_to t('button.export_xls'), order_coolings_path(q: request.params[:q], format: 'xlsx'), class: 'btn btn-outline-warning btn-sm mx-1'
+    - if current_user&.admin? || current_user&.moderator?
+      = link_to "#{t('button.import')}", import_file_order_coolings_path, class: "btn btn-outline-primary btn-sm mx-4", data: { turbo_frame: "modal_form" }
+  / .row.mt-2.p-0.mx-0
+  /   = render 'search_form'
+  hr.mb-0.mt-2
+.row
+  .contetnt-order-coolings.px-0.ps-0[data-controller="my-loading" data-action="turbo:before-fetch-request@document->my-loading#displayOrderCoolingsLoading turbo:before-fetch-response@document->my-loading#displayContentOrderCoolings"]
+    = render 'shared/loading_data' 
+    .col-12.col-md-12.mt-2
+      = turbo_frame_tag "order_coolings"
+        / .row
+        /   == pagy_bootstrap_nav(@pagy)
+        .container-fluid.sticky-top.p-0
+          .fixed-header.small.small
+            table.table.table-bordered.table-sm
+              thead.table-primary.align-middle.thead
+                tr
+                  th.small
+                    = sort_link(@q, 'division_name', class: 'd-block text-decoration-none text-dark')
+                      = "Склад"
+                      = show_icon_filter(:store_id_in)
+                  th.small
+                    = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
+                      = "Поставщик" 
+                      = show_icon_filter(:provider_in)                      
+                  th.small
+                    = sort_link(@q, :product, class: 'd-block text-decoration-none text-dark')
+                      = "Наименование"
+                  th.small.text-center
+                    = sort_link(@q, :required, class: 'd-block text-decoration-none text-dark')
+                      = "Обязат."
+                  th.small.text-center
+                    = sort_link(@q, :day_store, class: 'd-block text-decoration-none text-dark')
+                      = "К-во дн. присуст."
+                  th.small.text-center
+                    = sort_link(@q, :sales, class: 'd-block text-decoration-none text-dark')
+                      = "Продажи"
+                  th.small.text-center
+                    = sort_link(@q, :remainder, class: 'd-block text-decoration-none text-dark')
+                      = "Остат."
+                  th.small.text-center
+                    = sort_link(@q, :average_sales, class: 'd-block text-decoration-none text-dark')
+                      = "Сред.дн. прод."
+                  th.small.text-center.text-nowrap
+                    = sort_link(@q, :to_order, class: 'd-block text-decoration-none text-dark')
+                      = "К зак."
+                      = show_icon_filter(:to_order_in)                   
+                  th.small.text-center
+                    = sort_link(@q, :quantum, class: 'd-block text-decoration-none text-dark')
+                      = "Квант"                    
+                  th.small.text-center.text-nowrap
+                    = sort_link(@q, :availability_order, class: 'd-block text-decoration-none text-dark')
+                      = "Нал. зак."
+                      = show_icon_filter(:availability_order_in)                
+                  th.small.text-center
+                    = sort_link(@q, :next_order, class: 'd-block text-decoration-none text-dark')
+                      = "След. зак."
+                  th.small.text-center
+                    = sort_link(@q, :cal_day_order, class: 'd-block text-decoration-none text-dark')
+                      = "Расч. дн."                                                                
+                  
+                  / th.text-end.font-weight-bold.px-3
+                  /   i.bi.bi-grip-vertical       
+              tbody#body-order-coolings[data-my-loading-target="contentOrderCoolings"]
+                = render @order_coolings
+          
+                / .row.fixed-bottom
+
+        .mt-2.stiky-bottom
+          == pagy_bootstrap_nav(@pagy).html_safe if @pagy.pages > 1

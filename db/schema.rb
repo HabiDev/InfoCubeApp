@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_02_115314) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_03_112611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,27 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_02_115314) do
   create_table "divisions", force: :cascade do |t|
     t.string "name", null: false
     t.string "organization"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_coolings", force: :cascade do |t|
+    t.integer "store_id", default: 0, null: false
+    t.string "store"
+    t.string "provider"
+    t.string "product_group"
+    t.string "required"
+    t.string "product"
+    t.integer "day_store"
+    t.decimal "sales", precision: 10, scale: 2, default: "0.0"
+    t.decimal "remainder", precision: 10, scale: 2, default: "0.0"
+    t.string "average_sales", default: "0"
+    t.string "to_order"
+    t.decimal "quantum", precision: 10, scale: 2, default: "0.0"
+    t.integer "availability_order"
+    t.integer "next_order"
+    t.integer "cal_day_order"
+    t.integer "colored", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

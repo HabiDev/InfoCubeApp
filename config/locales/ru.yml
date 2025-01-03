@@ -53,6 +53,22 @@ ru:
         availability_order: Наличие заказа
         next_order: Следущий заказ
         cal_day_order: Расчет дней
+      order_cooling:
+        store_id: Склад
+        store: Склад
+        provider: Поставщик
+        product_group: Группа
+        required: Обязательный
+        product: Наименование
+        day_store: Кол-во дней присуст
+        sales: Продажи
+        remainder: Остаток
+        average_sales: Среднедн/продажи
+        to_order: К заказу
+        quantum: Квант
+        availability_order: Наличие заказа
+        next_order: Следущий заказ
+        cal_day_order: Расчет дней
       assortment:
         store_id: Склад
         provider: Поставщик

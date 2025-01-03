@@ -1,0 +1,32 @@
+tr id="#{dom_id(order_cooling)}"
+  td.small
+    = order_cooling.division&.name
+  td.small
+    = order_cooling.provider
+  td.small.
+    = order_cooling.product
+  td.small.text-end
+    = order_cooling.required
+  td.small.text-end
+    = order_cooling.day_store
+  td.small.text-end
+    = order_cooling.sales
+  td.small.text-end
+    = order_cooling.remainder
+  td.small.text-end
+    = number_with_precision(order_cooling.average_sales, precision: 1)
+  td.small.text-end
+    = order_cooling.to_order
+  td.small.text-end
+    = order_cooling.quantum     
+  td.small.text-end
+    = order_cooling.availability_order
+  td.small.text-end
+    = order_cooling.next_order
+  td.small.text-end
+    = order_cooling.cal_day_order
+
+  / td.text-end.px-3
+  /   span.d-block.font-weight-bold
+  /     = render "divisions/control", division: division
+

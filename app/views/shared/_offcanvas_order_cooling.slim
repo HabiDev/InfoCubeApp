@@ -1,0 +1,8 @@
+#staticBackdropOrderCooling.offcanvas.offcanvas-top data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropOrderCoolingLabel"
+  .offcanvas-header.p-2
+    h5#staticBackdropOrderCoolingLabel.offcanvas-title
+      | Фильтр
+    button.btn-close type="button" data-bs-dismiss="offcanvas" aria-label="Закрыть"
+  .offcanvas-body.p-0
+    #orders_search
+      = render "order_coolings/search_form"
