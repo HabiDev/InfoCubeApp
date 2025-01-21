@@ -20,6 +20,7 @@ ru:
       division: Подразделения
       assortment: Ассортимент
       user_division: Склады(пользователя) 
+      frov: ФРОВ
     attributes:
       user:
         full_name: Пользователь        
@@ -69,6 +70,17 @@ ru:
         availability_order: Наличие заказа
         next_order: Следущий заказ
         cal_day_order: Расчет дней
+      frov:
+        store_id: Склад        
+        provider: Поставщик
+        product_group: Группа
+        product_id: Код товара
+        product: Наименование
+        day_store: Кол-во дней на складе
+        sales_two_week: Продажи за 2 недели
+        product_ways: Товар в пути
+        remainder: Остаток
+        to_order: К заказу      
       assortment:
         store_id: Склад
         provider: Поставщик

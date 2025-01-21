@@ -24,6 +24,8 @@ ru:
     title: Заказ (16 поставщиков)
   order_coolings:
     title: Заказ (Охлажденка)
+  frovs:
+    title: Заказ (ФРОВ)
   assortments:
     title: Обязательный ассортимент
   shared:

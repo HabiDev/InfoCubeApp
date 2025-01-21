@@ -1,0 +1,8 @@
+#staticBackdropFrov.offcanvas.offcanvas-top data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropFrovLabel"
+  .offcanvas-header.p-2
+    h5#staticBackdropFrovLabel.offcanvas-title
+      | Фильтр
+    button.btn-close type="button" data-bs-dismiss="offcanvas" aria-label="Закрыть"
+  .offcanvas-body.p-0
+    #frovs_search
+      = render "frovs/search_form"

@@ -58,6 +58,14 @@ export default class extends Controller {
     console.log(event.detail.url)
   }
 
+  displayFrovsLoading(event) {
+    // const balanceContent = document.getElementById("balance_" + cardIdValue)
+    this.loadingTarget.classList.remove('d-none');
+    this.contentOrderCoolingsTarget.classList.add('d-none');
+    // balanceContent.classList.add('d-none');
+    console.log(event.detail.url)
+  }
+
   displayContentOrders() {
     // const balanceContent = document.getElementById("balance_#{cardIdValue}")
     this.loadingTarget.classList.add('d-none');
@@ -78,5 +86,12 @@ export default class extends Controller {
     this.contentOrderCoolingsTarget.classList.remove('d-none');
     // balanceContent.classList.remove('d-none');
   }
-  
+
+  displayContentFrovs() {
+    // const balanceContent = document.getElementById("balance_#{cardIdValue}")
+    this.loadingTarget.classList.add('d-none');
+    this.contentAssortmentsTarget.classList.remove('d-none');
+    // balanceContent.classList.remove('d-none');
+  }
+ 
 }

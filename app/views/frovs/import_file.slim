@@ -1,0 +1,14 @@
+.container
+  = turbo_frame_tag "modal_form"
+    .modal-header
+      h3#modalNewEditLabel.modal-title
+        = t('resource.load') 
+      button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]       
+    .modal-body
+      = form_with url: import_frovs_path, method: :post do |f|
+        .row 
+          .col-12
+            = f.file_field :file, class: 'form-control'
+        .row
+          .col-12.text-end.mt-4
+            = f.submit "#{t('submit.load')}", class: "btn btn-outline-primary"

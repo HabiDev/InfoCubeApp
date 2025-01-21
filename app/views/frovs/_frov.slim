@@ -1,0 +1,25 @@
+tr id="#{dom_id(frov)}"
+  td.small
+    = frov.division&.name
+  td.small
+    = frov.provider
+  td.small
+    = frov.product_group
+  td.small
+    = frov.product
+  td.small.text-end
+    = frov.day_store
+  td.small.text-end
+    = frov.sales_two_week
+  td.small.text-end
+    = frov.product_ways 
+  td.small.text-end
+    = frov.remainder
+  td.small.text-end
+    = frov.to_order
+  
+
+  / td.text-end.px-3
+  /   span.d-block.font-weight-bold
+  /     = render "divisions/control", division: division
+

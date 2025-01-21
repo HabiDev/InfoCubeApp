@@ -1,0 +1,49 @@
+xlsx_package.use_autowidth = true
+wb = xlsx_package.workbook
+
+margins = {
+  left: 0.395,
+  right: 0.395,
+  top: 0.395,
+  bottom: 0.395
+}
+
+setup = {
+  fit_to_width: 1,
+  fit_to_height: 999,
+  orientation: :landscape,
+  paper_size: 9
+}
+
+options = {
+  grid_lines: false
+}
+
+wb_style = wb.styles
+header = wb_style.add_style bg_color: 'ADD8E6', b: true, alignment: { wrap_text: true,  horizontal: :center, vertical: :center }, border: { style: :thin, color: 'FF000000' }
+wrap_text = wb_style.add_style alignment: { horizontal: :left, vertical: :center }
+row_aligment = wb_style.add_style alignment: { horizontal: :center, vertical: :center }
+row_aligment_vertical = wb_style.add_style alignment: { vertical: :center }
+wrap = wb_style.add_style alignment: {wrap_text: true, vertical: :center}, border: { style: :thin, color: 'FF000000' }
+row_borders = wb_style.add_style border: { style: :thin, color: 'FF000000' },  alignment: { vertical: :center }
+cell_background = wb_style.add_style border: { style: :thin, color: 'FF000000' },  bg_color: 'B4C6E7'
+cell_background_yelloow = wb_style.add_style border: { style: :thin, color: 'FF000000' },  bg_color: 'FFFF00'
+wb.add_worksheet(name: "Автозаказ", 
+                 page_margins: margins,
+                 page_setup: setup,
+                 print_options: options) do |sheet| 
+  sheet.add_row ["Склад", "Поставщик", "Категория", "Код товара", "Наименование", "К-во дней на складе", "Продажи за 2 недели", "Товар в пути", "Остаток", "К заказу"], style: header, height: 30
+  @xls.each do |frov| 
+    sheet.add_row [frov.division&.name, frov.provider, frov.product_group, frov.product_id, frov.product, frov.day_store, frov.sales_two_week, frov.product_ways, frov.remainder, frov.to_order], style: Axlsx::STYLE_THIN_BORDER
+    if frov.colored.present? && frov.colored == 2
+      sheet.rows.last.cells[4].style = cell_background
+      # sheet.rows.last.cells[3].style = cell_bacground
+    end
+  end
+  sheet.auto_filter = "A1:J#{sheet.rows.count-1}"
+  sheet.column_widths 40, 15, 15, 10, 65, 15, 15, 11, 12, 12
+
+  sheet.col_style 9, cell_background_yelloow
+
+end
+
