@@ -42,7 +42,7 @@ class FrovsController < ApplicationController
     @to_order_frovs = @q.result.to_order
     @count_frovs = @q.result.count
     # @xls = @q.result(disinct: true)
-    @q.sorts = ['division_name asc', 'provider asc', 'product asc'] if @q.sorts.empty?
+    @q.sorts = ['division_name asc', 'provider asc', 'product_group asc', 'product asc'] if @q.sorts.empty?
     @xls = @q.result(disinct: true)
     @pagy, @frovs = pagy(@q.result(disinct: true), limit: 25)
   end

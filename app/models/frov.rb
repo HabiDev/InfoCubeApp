@@ -1,7 +1,7 @@
 class Frov < ApplicationRecord
   belongs_to :division, class_name: "Division", foreign_key: "store_id", optional: true
 
-  default_scope { joins(:division).order(name: :asc, provider: :asc, product: :asc) }
+  default_scope { joins(:division).order(name: :asc, provider: :asc, product_group: :asc, product: :asc) }
 
   scope :provider, -> { where.not(provider: nil).reorder(:provider).distinct.pluck(:provider) }
   scope :product_group, -> { where.not(product_group: nil).reorder(:product_group).distinct.pluck(:product_group) }
