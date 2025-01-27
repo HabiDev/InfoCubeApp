@@ -28,7 +28,7 @@ class OrderCoolingsController < ApplicationController
   def import_file; end
 
   def set_order_coolings
-    if current_user.admin? || current_user.moderator?
+    if current_user.admin? || current_user.moderator? || current_user.guide?
       @q = OrderCooling.includes(:division).ransack(params[:q])
       @order_cooling_divisions = Division.all
     else

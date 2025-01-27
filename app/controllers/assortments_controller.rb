@@ -55,7 +55,7 @@ class AssortmentsController < ApplicationController
   # end
 
   def set_assortments
-    if current_user.admin? || current_user.moderator?
+    if current_user.admin? || current_user.moderator? || current_user.guide?
       @q = Assortment.includes(:division).ransack(params[:q])
       @assortment_divisions = Division.all
     else

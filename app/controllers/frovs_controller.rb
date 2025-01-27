@@ -28,7 +28,7 @@ class FrovsController < ApplicationController
   def import_file; end
 
   def set_frovs
-    if current_user.admin? || current_user.moderator?
+    if current_user.admin? || current_user.moderator? || current_user.guide?
       @q = Frov.includes(:division).ransack(params[:q])
       @frov_divisions = Division.all
     else

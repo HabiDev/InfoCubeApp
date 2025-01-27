@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
   # end
 
   def set_orders
-    if current_user.admin? || current_user.moderator?
+    if current_user.admin? || current_user.moderator? || current_user.guide?
       @q = Order.includes(:division).ransack(params[:q])
       @order_divisions = Division.all
     else
