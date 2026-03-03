@@ -26,6 +26,8 @@ ru:
     title: Заказ (Охлажденка)
   frovs:
     title: Заказ (ФРОВ)
+  order_bkks:
+    title: Заказ (БКК)
   assortments:
     title: Обязательный ассортимент
   shared:

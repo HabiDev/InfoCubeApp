@@ -58,4 +58,15 @@ module ApplicationHelper
       end
     end
   end
+
+  def day_name(date = Date.current, case_type = :nominative)
+    key = case case_type
+          when :genitive then "date.day_names_genitive"
+          when :prepositional then "date.day_names_prepositional"
+          when :with_prepositional then "date.day_with_prepositional"
+          else "date.day_names"
+          end
+
+    I18n.t(key)[date.wday]
+  end
 end

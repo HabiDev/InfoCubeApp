@@ -1,0 +1,49 @@
+xlsx_package.use_autowidth = true
+wb = xlsx_package.workbook
+
+margins = {
+  left: 0.395,
+  right: 0.395,
+  top: 0.395,
+  bottom: 0.395
+}
+
+setup = {
+  fit_to_width: 1,
+  fit_to_height: 999,
+  orientation: :landscape,
+  paper_size: 9
+}
+
+options = {
+  grid_lines: false
+}
+
+wb_style = wb.styles
+header = wb_style.add_style bg_color: 'ADD8E6', b: true, alignment: { wrap_text: true,  horizontal: :center, vertical: :center }, border: { style: :thin, color: 'FF000000' }
+wrap_text = wb_style.add_style alignment: { horizontal: :left, vertical: :center }
+row_aligment = wb_style.add_style alignment: { horizontal: :center, vertical: :center }
+row_aligment_vertical = wb_style.add_style alignment: { vertical: :center }
+wrap = wb_style.add_style alignment: {wrap_text: true, vertical: :center}, border: { style: :thin, color: 'FF000000' }
+row_borders = wb_style.add_style border: { style: :thin, color: 'FF000000' },  alignment: { vertical: :center }
+cell_background = wb_style.add_style border: { style: :thin, color: 'FF000000' },  bg_color: 'B4C6E7'
+cell_background_yelloow = wb_style.add_style border: { style: :thin, color: 'FF000000' },  bg_color: 'FFFF00'
+wb.add_worksheet(name: "Заказ БКК", 
+                 page_margins: margins,
+                 page_setup: setup,
+                 print_options: options) do |sheet| 
+  sheet.add_row ["Заведующая", "Код магазина", "Склад", "Код товара", "Наименование", "Продажи 4 недели назад", "Продажи 3 недели назад", "Продажи 2 недели назад", "Продажи 1 недели назад", "Средние продажи за 4 недели", "Остаток по 1С", "Рекомендованный заказ", "Заказ"], style: header, height: 45
+  @xls.each do |bkk| 
+    sheet.add_row [bkk.store_manager, bkk.store_id, bkk.division&.name, bkk.product_id, bkk.product, bkk.sales_four_weeks_ago, bkk.sales_three_weeks_ago, bkk.sales_two_weeks_ago, bkk.sales_one_weeks_ago, bkk.average_sales, bkk.remainder, bkk.recommended_order, bkk.order], style: Axlsx::STYLE_THIN_BORDER
+    if bkk.colored.present? && bkk.colored == 2
+      sheet.rows.last.cells[4].style = cell_background
+      # sheet.rows.last.cells[3].style = cell_bacground
+    end
+  end
+  sheet.auto_filter = "A1:J#{sheet.rows.count-1}"
+  sheet.column_widths 30, 12, 30, 12, 65, 12, 12, 12, 12, 12, 12, 12, 15
+
+  #sheet.col_style 12, cell_background_yelloow
+
+end
+

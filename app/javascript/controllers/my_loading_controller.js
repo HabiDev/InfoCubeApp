@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="my-modal"
 export default class extends Controller {
-  static targets = [ 'content', 'loading', 'contentDivisions', 'contentOrders', 'link', 'contentAssortments', 'contentOrderCoolings' ];
+  static targets = [ 'content', 'loading', 'contentDivisions', 'contentOrders', 'link', 'contentAssortments', 'contentOrderCoolings', 'contentFrovs', 'contentOrderBkks' ];
   static values = { balance: String };
 
   connect() {
@@ -66,6 +66,14 @@ export default class extends Controller {
     console.log(event.detail.url)
   }
 
+  displayOrderBkksLoading(event) {
+    // const balanceContent = document.getElementById("balance_" + cardIdValue)
+    this.loadingTarget.classList.remove('d-none');
+    this.contentOrderCoolingsTarget.classList.add('d-none');
+    // balanceContent.classList.add('d-none');
+    console.log(event.detail.url)
+  }
+
   displayContentOrders() {
     // const balanceContent = document.getElementById("balance_#{cardIdValue}")
     this.loadingTarget.classList.add('d-none');
@@ -88,6 +96,13 @@ export default class extends Controller {
   }
 
   displayContentFrovs() {
+    // const balanceContent = document.getElementById("balance_#{cardIdValue}")
+    this.loadingTarget.classList.add('d-none');
+    this.contentAssortmentsTarget.classList.remove('d-none');
+    // balanceContent.classList.remove('d-none');
+  }
+
+    displayContentOrderBkks() {
     // const balanceContent = document.getElementById("balance_#{cardIdValue}")
     this.loadingTarget.classList.add('d-none');
     this.contentAssortmentsTarget.classList.remove('d-none');

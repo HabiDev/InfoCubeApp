@@ -1,5 +1,5 @@
 #modalNewEdit.modal[data-controller="my-modal" data-my-modal-target="modalNewEdit" data-action="turbo:frame-load->my-modal#open turbo:submit-end->my-modal#close"]
-  .modal-dialog.modal-lg
+  .modal-dialog.modal-lg.modal-dialog-centered
     .modal-content
       = turbo_frame_tag "modal_form"
 #modalAdd.modal[data-controller="modal-add" data-modal-add-target="modalAdd" data-action="turbo:frame-load->modal-add#open turbo:submit-end->modal-add#close"]

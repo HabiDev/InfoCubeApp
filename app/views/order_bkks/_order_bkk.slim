@@ -1,0 +1,36 @@
+/ tr id="#{dom_id(order_bkk)}"
+/   = link_to "", edit_order_bkk_path(order_bkk), class: "link-underline-dark", data: { turbo_frame: "modal_form" }
+tr id=dom_id(order_bkk) onclick="Turbo.visit('#{edit_order_bkk_path(order_bkk)}', { frame: 'modal_form' })" style="cursor:pointer;"
+  td.text-center.fw-bold
+    / i.bi.bi-check-lg."#{order_bkk_cell_classing(order_bkk.order)}"
+    = order_bkk_cell_classing(order_bkk.order)
+  td.small
+    = order_bkk.division&.name
+  / = content_tag(:td, class: "small fw-bold #{order_bkk_cell_classing(order_bkk.order)}")
+  td.small
+    /.bg-success.text-dark.bg-opacity-75
+    = order_bkk.product
+  td.small.text-end
+    = order_bkk.sales_four_weeks_ago
+  td.small.text-end
+    = order_bkk.sales_three_weeks_ago
+  td.small.text-end
+    = order_bkk.sales_two_weeks_ago
+  td.small.text-end
+    = order_bkk.sales_one_weeks_ago
+  td.small.text-end
+    = order_bkk.average_sales
+  td.small.text-end
+    = order_bkk.remainder
+  td.small.text-end
+    = order_bkk.recommended_order
+  td.small.text-center.fw-bold
+    = order_bkk.order
+    / = link_to "", edit_order_bkk_path(order_bkk), class: "stretched-link link-underline-dark", data: { turbo_frame: "modal_form" }
+        / = order_bkk.order
+  
+
+  / td.text-end.px-3
+  /   span.d-block.font-weight-bold
+  /     = render "divisions/control", division: division
+

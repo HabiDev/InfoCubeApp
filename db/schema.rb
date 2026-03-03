@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_21_123337) do
+ActiveRecord::Schema[7.0].define(version: 2026_03_01_161506) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,24 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_21_123337) do
     t.integer "product_ways"
     t.decimal "remainder", precision: 10, scale: 2, default: "0.0"
     t.string "to_order"
+    t.integer "colored", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_bkks", force: :cascade do |t|
+    t.text "store_manager"
+    t.integer "store_id", default: 0, null: false
+    t.integer "product_id"
+    t.string "product"
+    t.integer "sales_four_weeks_ago"
+    t.integer "sales_three_weeks_ago"
+    t.integer "sales_two_weeks_ago"
+    t.integer "sales_one_weeks_ago"
+    t.integer "average_sales"
+    t.integer "recommended_order"
+    t.integer "remainder"
+    t.integer "order"
     t.integer "colored", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -34,6 +34,7 @@ ru:
     last_sign_in: последний сеанс
     locked_at: Заблокирован 
   notice:
+    order_bkk_warning: Время редактирования заказа вышла.
     record_create: Запись удачно создан.
     record_destroy: Запись удален.
     record_edit: Запись откоректировано.

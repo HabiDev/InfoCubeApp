@@ -21,6 +21,7 @@ ru:
       assortment: Ассортимент
       user_division: Склады(пользователя) 
       frov: ФРОВ
+      order_bkk: Заказ БКК
     attributes:
       user:
         full_name: Пользователь        
@@ -80,7 +81,20 @@ ru:
         sales_two_week: Продажи за 2 недели
         product_ways: Товар в пути
         remainder: Остаток
-        to_order: К заказу      
+        to_order: К заказу 
+      order_bkk:
+        store_manager: Заведующая
+        store_id: Склад        
+        product_id: Код товара
+        product: Наименование
+        sales_four_weeks_ago: Продажи 4 недели назад
+        sales_three_weeks_ago: Продажи 3 недели назад
+        sales_two_weeks_ago: Продажи 2 недели назад
+        sales_one_weeks_ago: Продажи 1 недели назад
+        average_sales: Средние продажи за 4 недели
+        remainder: Остаток по 1С		
+        recommended_order: Рекомендованный заказ
+        order: Заказ         
       assortment:
         store_id: Склад
         provider: Поставщик
@@ -122,6 +136,30 @@ ru:
     - четверг
     - пятница
     - суббота
+    day_names_genitive:
+    - воскресенья
+    - понедельника
+    - вторника
+    - среды
+    - четверга
+    - пятницы
+    - субботы
+    day_names_prepositional:
+    - воскресенье
+    - понедельник
+    - вторник
+    - среду
+    - четверг
+    - пятницу
+    - субботу
+    day_with_prepositional:
+    - на воскресенье
+    - на понедельник
+    - на вторник
+    - на среду
+    - на четверг
+    - на пятницу
+    - на субботу
     formats:
       default: "%d.%m.%Y"
       long: "%-d %B %Y"
