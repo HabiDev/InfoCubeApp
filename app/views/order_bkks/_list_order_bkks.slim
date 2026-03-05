@@ -55,7 +55,7 @@
                     = sort_link(@q, :order, class: 'd-block text-decoration-none text-dark')
                       = "Заказ"
                       br
-                      = "#{day_name(Date.current.next_day, :with_prepositional)}"
+                      = "#{day_name(@order_bkks.last.created_at.next_day, :with_prepositional)}"
                 tr
                   th.small.text-center[style="width: 5%"]
                     = sort_link(@q, :sales_four_weeks_ago, class: 'd-block text-decoration-none text-dark')

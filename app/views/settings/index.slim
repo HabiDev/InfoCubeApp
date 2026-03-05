@@ -1,0 +1,19 @@
+h1 #{t('settings.title')}
+.row
+  .col-12.col-md-12.text-end
+    = link_to "#{t('button.new')}", new_setting_path, class: "btn btn-outline-success btn-sm", data: { turbo_frame: "modal_form" }
+hr
+.row
+  .col-9
+    .container-fluid.sticky-top.p-0
+      .fixed-header
+        table.table.table-bordered.table-sm
+          thead.table-primary.align-middle.thead
+            tr
+              th
+                = "Параметр"
+              th
+                = "Значение" 
+          tbody#settings[data-my-loading-target="contentSettings"]  
+            = render @settings
+

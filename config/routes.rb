@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :user_divisions, only: %w(new create destroy)
 
+  resources :settings, except: [:show]
+
 
   resources :orders do
     collection do 

@@ -32,6 +32,7 @@ class OrderBkk < ApplicationRecord
       row = Hash[[header, spreadsheet.row(i)].transpose]
       order_bkk = new
       order_bkk.attributes = row.to_hash.slice(*accessible_attributes)
+      order_bkk.created_at = Setting.val('set_date_order_bkk').to_datetime if Setting.val('set_date_order_bkk').present?
       order_bkk.save
     end
   end

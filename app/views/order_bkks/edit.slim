@@ -1,11 +1,11 @@
 .container
   = turbo_frame_tag "modal_form"
-    - if Time.current.hour < 12
+    - if Time.current.hour < Setting.val('limit_time_order_bkk').to_i
       .modal-header
         h4#modalNewEditLabel.modal-title
           = @order_bkk.division.name
         button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]       
-      .modal-body
+      .modal-body[data-controller="autofocus"]
         h5
           = @order_bkk.product
         = render 'order_bkks/form', order_bkk: @order_bkk
@@ -15,4 +15,4 @@
             | Время формирования заказа БКК истекло
             br
             .small.text-muted
-              | (после 12:00 оформление недоступно).
+              | "(после #{Setting.val('limit_time_order_bkk').to_i}:00 оформление недоступно)."

@@ -1,5 +1,3 @@
-/ tr id="#{dom_id(order_bkk)}"
-/   = link_to "", edit_order_bkk_path(order_bkk), class: "link-underline-dark", data: { turbo_frame: "modal_form" }
 tr id=dom_id(order_bkk) onclick="Turbo.visit('#{edit_order_bkk_path(order_bkk)}', { frame: 'modal_form' })" style="cursor:pointer;"
   td.text-center.fw-bold
     / i.bi.bi-check-lg."#{order_bkk_cell_classing(order_bkk.order)}"

@@ -1,0 +1,5 @@
+tr id=dom_id(setting) onclick="Turbo.visit('#{edit_setting_path(setting)}', { frame: 'modal_form' })" style="cursor:pointer;"
+  td
+    = setting.description
+  td.text-end.m-5
+    = setting.value

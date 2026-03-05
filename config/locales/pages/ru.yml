@@ -28,6 +28,8 @@ ru:
     title: Заказ (ФРОВ)
   order_bkks:
     title: Заказ (БКК)
+  settings:
+    title: Настройки
   assortments:
     title: Обязательный ассортимент
   shared:

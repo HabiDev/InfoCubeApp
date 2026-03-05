@@ -1,0 +1,15 @@
+= simple_form_for @setting do |f|
+  = f.error_notification
+  .row
+    .col-9
+      = f.input :description, required: true, class: 'form-control form-control-sm', disabled: !f.object.new_record?
+    - unless setting.persisted?
+      .col-6
+        = f.input :var, required: true, class: 'form-control form-control-sm'  
+    .col-3
+      = f.input :value, as: :string, required: true, class: 'form-control form-control-sm'
+
+  .row  
+    .col-12.col-md-12.text-end
+      span.p-2
+        = f.submit "#{t('submit.save')}", class: "btn btn-primary"

@@ -103,8 +103,10 @@ ru:
         comment: Комментария
         sales: Продажи
         remainder: Остаток
-       
-    
+      setting:
+        var: Параметр
+        value: Значение
+        description: Описание
   date:
     abbr_day_names:
     - Вс

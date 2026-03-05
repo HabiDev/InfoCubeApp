@@ -22,7 +22,7 @@ class OrderBkksController < ApplicationController
     respond_to do |format|
       if @order_bkk.update(order_bkk_params)
         format.html { redirect_to order_bkks_path, notice: t('notice.record_edit') }
-        format.turbo_stream { flash.now[:warning] = t('notice.record_edit') }
+        format.turbo_stream { flash.now[:notice] = t('notice.record_edit') }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -67,7 +67,7 @@ class OrderBkksController < ApplicationController
   private
 
   def check_edit_time
-    return unless Time.current.hour >= 12
+    return unless Time.current.hour >= Setting.val('limit_time_order_bkk').to_i
 
     flash.now[:warning] = t('notice.order_bkk_warning')
     respond_to do |format|
