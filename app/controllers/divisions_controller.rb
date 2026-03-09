@@ -76,10 +76,6 @@ class DivisionsController < ApplicationController
     @q.sorts = ['name asc' ] if @q.sorts.empty?
     # @divisions = @q.result(disinct: true)
     @pagy, @divisions = pagy(@q.result(disinct: true)) 
-    # respond_to do |format|
-    #   format.html
-    #   format.turbo_stream
-    # end
   end
 
   def division_params

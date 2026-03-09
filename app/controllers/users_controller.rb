@@ -10,10 +10,6 @@ class UsersController < ApplicationController
     # @q.sorts = ['profile_full_name asc'] if @q.sorts.empty?
     @pagy, @users = pagy(@q.result(disinct: true).includes(:profile)) 
     @count_users = @q.result.count
-    # respond_to do |format|
-    #   format.html
-    #   format.turbo_stream
-    # end
   end
 
   def new
