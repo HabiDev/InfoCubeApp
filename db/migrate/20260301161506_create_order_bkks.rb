@@ -3,6 +3,8 @@ class CreateOrderBkks < ActiveRecord::Migration[7.0]
     create_table :order_bkks do |t|
       t.text :store_manager
       t.integer :store_id,              null: false, default: 0
+      t.string  :product_category
+      t.string  :product_group
       t.integer :product_id
       t.string  :product
       t.integer :sales_four_weeks_ago
@@ -13,8 +15,7 @@ class CreateOrderBkks < ActiveRecord::Migration[7.0]
       t.integer :recommended_order
       t.integer :remainder
       t.integer :order  
-      t.integer :order_saturday
-      t.integer :order_sunday    
+      t.integer :additional_order  
       t.integer :colored,               default: 0   
 
       t.timestamps

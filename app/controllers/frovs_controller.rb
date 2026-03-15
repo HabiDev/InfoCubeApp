@@ -6,6 +6,7 @@ class FrovsController < ApplicationController
     # # authorize Division 
     respond_to do |format|
       format.html
+      format.turbo_stream
       format.xlsx do
         render xlsx: 'frovs', template: 'frovs/export_xls'
       end
@@ -16,11 +17,9 @@ class FrovsController < ApplicationController
     if params[:file].present?
       Frov.delete_all
       Frov.import(params[:file])
-      
-      flash.now[:notice] = t('notice.record_imported')
-      set_frovs
+      redirect_to frovs_path, notice: t('notice.record_imported')
     else
-      flash.now[:error] = t('notice.record_imported_error')
+      redirect_to frovs_path, alert: t('notice.record_imported_error')
     end
     # redirect_to orders_path unless turbo_frame_request?
   end
@@ -44,6 +43,6 @@ class FrovsController < ApplicationController
     # @xls = @q.result(disinct: true)
     @q.sorts = ['division_name asc', 'provider asc', 'product_group asc', 'product asc'] if @q.sorts.empty?
     @xls = @q.result(disinct: true)
-    @pagy, @frovs = pagy(@q.result(disinct: true), limit: 25)
+    @pagy, @frovs = pagy(@q.result(disinct: true))
   end
 end

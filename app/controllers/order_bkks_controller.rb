@@ -8,6 +8,7 @@ class OrderBkksController < ApplicationController
     # # authorize Division 
     respond_to do |format|
       format.html
+      format.turbo_stream
       format.xlsx do
         render xlsx: 'order_bkks', template: 'order_bkks/export_xls'
       end
@@ -15,6 +16,8 @@ class OrderBkksController < ApplicationController
   end
   
   def edit; end
+
+  def show; end
   
   def update
     # authorize @card  
@@ -33,13 +36,10 @@ class OrderBkksController < ApplicationController
     if params[:file].present?
       OrderBkk.delete_all
       OrderBkk.import(params[:file])
-      
-      flash.now[:notice] = t('notice.record_imported')
-      set_order_bkks
+      redirect_to order_bkks_path, notice: t('notice.record_imported')
     else
-      flash.now[:error] = t('notice.record_imported_error')
+      redirect_to order_bkks_path, alert: t('notice.record_imported_error')
     end
-    # redirect_to orders_path unless turbo_frame_request?
   end
 
   def import_file; end
@@ -54,14 +54,15 @@ class OrderBkksController < ApplicationController
     end
     # @order_bkks = @q.result
     @order_bkk_products = @q.result.product
-    # @frov_product_groups = @q.result.product_group
+    @order_bkk_product_groups = @q.result.product_group
+    @order_bkk_product_categories = @q.result.product_category
     # @availability_order_coolings = @q.result.availability_order
     # @to_order_frovs = @q.result.to_order
     @count_order_bkks = @q.result.count
     # @xls = @q.result(disinct: true)
-    @q.sorts = ['division_name asc', 'product asc'] if @q.sorts.empty?
+    @q.sorts = ['division_name asc', 'product_category asc', 'product asc'] if @q.sorts.empty?
     @xls = @q.result(disinct: true)
-    @pagy, @order_bkks = pagy(@q.result(disinct: true), limit: 25)
+    @pagy, @order_bkks = pagy(@q.result(distinct: true).includes(:division))
   end
 
   private
@@ -69,13 +70,18 @@ class OrderBkksController < ApplicationController
   def check_edit_time
     return unless Time.current.hour >= Setting.val('limit_time_order_bkk').to_i
 
-    flash.now[:warning] = t('notice.order_bkk_warning')
     respond_to do |format|
-      format.turbo_stream do        
+      format.turbo_stream do
+        flash.now[:warning] = t('notice.order_bkk_warning')
         render turbo_stream: turbo_stream.prepend("flash", partial: "shared/flash")
       end
-      format.html { redirect_to order_bkks_path, notice: t('notice.order_bkk_warning') }
+
+      format.html do
+        redirect_to order_bkks_path, alert: t('notice.order_bkk_warning')
+      end
     end
+
+    return
   end
 
 
@@ -84,6 +90,6 @@ class OrderBkksController < ApplicationController
   end
 
   def order_bkk_params
-    params.require(:order_bkk).permit(:order)
+    params.require(:order_bkk).permit(:order, :additional_order)
   end
 end

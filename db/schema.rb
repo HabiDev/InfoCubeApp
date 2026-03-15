@@ -53,6 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_03_150712) do
   create_table "order_bkks", force: :cascade do |t|
     t.text "store_manager"
     t.integer "store_id", default: 0, null: false
+    t.string "product_category"
+    t.string "product_group"
     t.integer "product_id"
     t.string "product"
     t.integer "sales_four_weeks_ago"
@@ -63,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_03_150712) do
     t.integer "recommended_order"
     t.integer "remainder"
     t.integer "order"
+    t.integer "additional_order"
     t.integer "colored", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

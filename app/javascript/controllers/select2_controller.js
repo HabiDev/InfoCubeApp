@@ -60,6 +60,7 @@ export default class extends Controller {
     $('#order-provider-select').select2(); 
     $('#order-store-select').select2(); 
     $('#order-availability-order-select').select2(); 
+    $('#order-product_categories-select').select2(); 
     $('#order-to-order-select').select2({     
       multiple: true,
       allowClear: false  
@@ -70,8 +71,9 @@ export default class extends Controller {
     $('#order-provider-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
     $('#order-product-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
     $('#order-product-group-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
+    $('#order-product_categories-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
     $('#order-store-select').siblings('.select2-container').append('<span class="select-all"><i class="fa-regular fa-square-check"></i></span>');
-     
+    
     $('.select-all').on('click', function (e) {
       selectAllSelect2($(this).siblings('.selection').find('.select2-search__field'));
     });

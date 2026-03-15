@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
     # # authorize Division 
     respond_to do |format|
       format.html
+      format.turbo_stream
       format.xlsx do
         render xlsx: 'orders', template: 'orders/export_xls'
       end
@@ -16,11 +17,9 @@ class OrdersController < ApplicationController
     if params[:file].present?
       Order.delete_all
       Order.import(params[:file])
-      
-      flash.now[:notice] = t('notice.record_imported')
-      set_orders
+      redirect_to orders_path, notice: t('notice.record_imported')
     else
-      flash.now[:error] = t('notice.record_imported_error')
+      redirect_to orders_path, alert: t('notice.record_imported_error')
     end
     # redirect_to orders_path unless turbo_frame_request?
   end
@@ -54,6 +53,6 @@ class OrdersController < ApplicationController
     # @xls = @q.result(disinct: true)
     @q.sorts = ['division_name asc', 'provider asc', 'product asc'] if @q.sorts.empty?
     @xls = @q.result(disinct: true)
-    @pagy, @orders = pagy(@q.result(disinct: true), limit: 25)
+    @pagy, @orders = pagy(@q.result(disinct: true))
   end
 end

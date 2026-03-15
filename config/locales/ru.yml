@@ -84,7 +84,9 @@ ru:
         to_order: К заказу 
       order_bkk:
         store_manager: Заведующая
-        store_id: Склад        
+        store_id: Склад 
+        product_category: Категория
+        product_group: Группа       
         product_id: Код товара
         product: Наименование
         sales_four_weeks_ago: Продажи 4 недели назад
@@ -94,7 +96,8 @@ ru:
         average_sales: Средние продажи за 4 недели
         remainder: Остаток по 1С		
         recommended_order: Рекомендованный заказ
-        order: Заказ         
+        order: Заказ дневной
+        additional_order: Заказ вечерний       
       assortment:
         store_id: Склад
         provider: Поставщик

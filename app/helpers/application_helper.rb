@@ -51,6 +51,19 @@ module ApplicationHelper
     turbo_stream.prepend "flash", partial: "shared/flash"
   end
 
+  def turbo_pagination_frame(pagy)
+    return unless pagy.next
+
+    content_tag :div, class: "my-paginate" do
+      turbo_frame_tag(
+        :pagination,
+        loading: :lazy,
+        src: url_for(request.query_parameters.merge(page: pagy.next, format: :turbo_stream)),
+        data: { turbo_cache: false }
+      )
+    end
+  end
+ 
   def show_icon_filter(filter_column)
     if (params[:q].present?)
       if !params[:q][filter_column].nil? && params[:q][filter_column].length > 1

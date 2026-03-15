@@ -32,16 +32,16 @@ wb.add_worksheet(name: "Заказ БКК",
                  page_margins: margins,
                  page_setup: setup,
                  print_options: options) do |sheet| 
-  sheet.add_row ["Заведующая", "Код магазина", "Склад", "Код товара", "Наименование", "Продажи 4 недели назад", "Продажи 3 недели назад", "Продажи 2 недели назад", "Продажи 1 недели назад", "Средние продажи за 4 недели", "Остаток по 1С", "Рекомендованный заказ", "Заказ"], style: header, height: 45
+  sheet.add_row ["Заведующая", "Код магазина", "Склад", "Категория", "Группа", "Код товара", "Наименование", "Продажи 4 недели назад", "Продажи 3 недели назад", "Продажи 2 недели назад", "Продажи 1 недели назад", "Средние продажи за 4 недели", "Остаток по 1С", "Рекомендованный заказ", "Заказ (дневной)", "Заказ (вечерний)", "colored"], style: header, height: 45
   @xls.each do |bkk| 
-    sheet.add_row [bkk.store_manager, bkk.store_id, bkk.division&.name, bkk.product_id, bkk.product, bkk.sales_four_weeks_ago, bkk.sales_three_weeks_ago, bkk.sales_two_weeks_ago, bkk.sales_one_weeks_ago, bkk.average_sales, bkk.remainder, bkk.recommended_order, bkk.order], style: Axlsx::STYLE_THIN_BORDER
+    sheet.add_row [bkk.store_manager, bkk.store_id, bkk.division&.name, bkk.product_category, bkk.product_group, bkk.product_id, bkk.product, bkk.sales_four_weeks_ago, bkk.sales_three_weeks_ago, bkk.sales_two_weeks_ago, bkk.sales_one_weeks_ago, bkk.average_sales, bkk.remainder, bkk.recommended_order, bkk.order, bkk.additional_order, bkk.colored], style: Axlsx::STYLE_THIN_BORDER
     if bkk.colored.present? && bkk.colored == 2
-      sheet.rows.last.cells[4].style = cell_background
+      sheet.rows.last.cells[6].style = cell_background
       # sheet.rows.last.cells[3].style = cell_bacground
     end
   end
   sheet.auto_filter = "A1:J#{sheet.rows.count-1}"
-  sheet.column_widths 30, 12, 30, 12, 65, 12, 12, 12, 12, 12, 12, 12, 15
+  sheet.column_widths 30, 12, 30, 25, 25, 12, 65, 12, 12, 12, 12, 12, 12, 12, 15, 15, 10
 
   #sheet.col_style 12, cell_background_yelloow
 

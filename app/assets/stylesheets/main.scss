@@ -6,61 +6,11 @@ footer {
   height: 60px;
 }
 
-// .sticky-top {
-//   position: -webkit-sticky;
-//   position: sticky;
-//   top: 0;
-//   z-index: 1020;
-// }
-
-//Стиль для таблицы: 'Клик для строки'
-// th a {
-//   display:block;
-//   width:100%;
-//   height: 100%;
-//   color: $dark;
-// }
-
-// th a:hover {
-//   text-decoration: none;
-//   cursor: default;
-// }
-
-// th a i {
-//   float: right;
-// }
-
-// thead th a:hover, th a:active, th a:visited, th a:link {
-//   // color: $dark;
-//   text-decoration: none;
-//   cursor: default;
-// }
-
-//Конец стиля для таблицы: 'Клик для строки'
-
 .thead {
   position: sticky;
   top: 0;
   z-index: 1000;
-
 }
-
-// .thead th {
-//   position: relative;
-//   top: 0;
-//   box-shadow: 0 0px 0px 0.5px rgb(186, 203, 229);
-// }
-
-// .thead th::before {
-//   content: "";
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   top: 0;
-//   left: 0;
-//   box-shadow: 0 0px 0px 1px rgb(186, 203, 229);
-//   z-index: 1000;
-// }
 
 main {
   margin-top: 60px;
@@ -71,118 +21,54 @@ main {
 }
 
 .fixed-header {
-  // height: auto; /* Прописываем высоту контейнера */
-  overflow-y: auto; /* Активируем прокрутку */
+  height: calc(100vh - 120px - 60px);
+  overflow: auto; /* Активируем прокрутку */
 }
 
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table thead th {
+  position: sticky;
+  top: 0;
+  // background: #fff;
+  z-index: 20;
+  border-bottom: 1px solid #dee2e6;
+}
+.table th:not(:last-child) {
+  border-right: 1px solid #dee2e6;
+}
+.table td:not(:last-child) {
+  border-right: 0px solid #dee2e6;
+}
+.table tbody td {
+  border-bottom: 0.5px solid #dee2e6;
+}
+.table thead th {
+  box-shadow: 0 2px 2px rgba(0,0,0,0.05);
+}
 .catalog {
-  @media (min-width: 901px) and (max-width: 1272px) {
-    .fixed-header {
-      overflow-y: auto;
-      height: 284px; 
-    }
-  }
-  
-  @media (min-width: 701px) and (max-width: 900px) {
-    .fixed-header {
-      overflow-y: auto;
-      height: 715px; 
-    }
-  }
-
-  @media (min-width: 1350px) and (max-width: 1439px) {
-    .fixed-header {
-      height: 340px; 
-    }
-  }
-  
-  @media (min-width: 1440px) and (max-width: 1599px) {
-    .fixed-header {
-      overflow-y: auto;
-      height: 404px; 
-    }
-  }
-  
-  @media (min-width: 1600px) and (max-width: 1919px) {
-    .fixed-header {
-      height: 542px;
-    } 
-  }
-
-  @media (min-width: 1920px) and (max-width: 2240px) {
-    .fixed-header {
-      overflow-y: auto;
-      height: 643px;
-    } 
-  }
-
-  @supports (-webkit-hyphens: auto) {
-    @media (min-width: 1440px) and (max-width: 1599px) {
-      .fixed-header {
-        overflow-y: auto;
-        height: 474px;
-      } 
-    }
-  }
-
-  @media (min-width: 1600px) and (max-width: 1663px) {
-    .fixed-header {
-      overflow-y: auto;
-      height: 464px;
-    } 
-  }
-}
-
-@media (min-width: 1350px) and (max-width: 1439px) {
   .fixed-header {
-    height: 422px; 
+    height: calc(100vh - 240px);
+    overflow: auto; /* Активируем прокрутку */
   }
 }
-
-@media (min-width: 901px) and (max-width: 1272px) {
-  .fixed-header {
-    height: 360px; 
-  }
-}
-
-@media (min-width: 701px) and (max-width: 900px) {
-  .fixed-header {
-    height: 740px; 
-  }
-}
-
-@media (min-width: 1440px) and (max-width: 1599px) {
-  .fixed-header {
-    height: 480px; 
-  }
-}
-
-@media (min-width: 1600px) and (max-width: 1919px){
-  .fixed-header {
-    height: 730px;
-  } 
-}
-
-@media (min-width: 1920px) and (max-width: 2240px){
-  .fixed-header {
-    height: 730px;
-  } 
-}
-
-@supports (-webkit-hyphens: auto) {
-  @media (min-width: 1440px) and (max-width: 1599px) {
-    .fixed-header {
-      height: 550px;
-    } 
-  }
-}
-
 .fixed-header tbody {
-  // display: block; /* Переключаем на блочное отображение */
-  // height: 800px; /* Задаём высоту области прокрутки */
   overflow-y: auto; /* Добавляем возможность прокрутки */
   // overflow-x: auto;
   display: table-row-group;
+}
+
+.truncate-cell {
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) for truncated text */
+    max-width: 150px; /* Optional: Define a maximum width */
+}
+
+.my-paginate {
+  min-height: 60px;
 }
 
 .form-group .icon {
@@ -235,14 +121,35 @@ main {
   z-index: 100000;
 }
 
-.main-spenner {
+.main-spinner {
   position: absolute;
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
-  z-index: 10000;
+  z-index: 10000000;
   opacity: 0.4;
+}
+
+// .main-spinner {
+//   position: relative; /* или absolute, если хотите перекрывать весь контейнер */
+//   width: 100%;
+//   height: 100px; /* можно под размер контейнера */
+// }
+
+// .main-spinner .spinner-border {
+//   width: 3rem;
+//   height: 3rem;
+// }
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.7);
+  z-index: 100;
 }
 
 .offcanvas, .offcanvas-xxl, .offcanvas-xl, .offcanvas-lg, .offcanvas-md, .offcanvas-sm {

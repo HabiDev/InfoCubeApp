@@ -1,5 +1,5 @@
 .row
-  .col-6.col-md-6.fw-bold.text-muted.mt-2.mb-0.pb-0
+  .col-6.col-md-6.fw-bold.text-muted.mt-2.mb-0.pb-0   
     - if @order_bkks.present?
       = "Кол-во записей: #{@count_order_bkks} (Актуально на: #{l(@order_bkks.last.created_at, format: :small)})"
     - else 
@@ -10,69 +10,72 @@
       | Фильтр
     - if params[:q].present?
       = link_to t('submit.clear'), request.path, class: 'btn btn-outline-secondary btn-sm mx-1'
-      / = link_to t('button.export_xls'), export_xls_path(format: "xlsx"), class: 'btn btn-outline-warning btn-sm mx-1'
     - if current_user&.admin? || current_user&.moderator?
       = link_to t('button.export_xls'), order_bkks_path(q: request.params[:q], format: 'xlsx'), class: 'btn btn-outline-warning btn-sm mx-1'
     - if current_user&.admin? || current_user&.moderator?
       = link_to "#{t('button.import')}", import_file_order_bkks_path, class: "btn btn-outline-primary btn-sm mx-4", data: { turbo_frame: "modal_form" }
-  / .row.mt-2.p-0.mx-0
-  /   = render 'search_form'
   hr.mb-0.mt-2
 .row
-  .contetnt-order-bkks.px-0.ps-0[data-controller="my-loading" data-action="turbo:before-fetch-request@document->my-loading#displayOrderBkksLoading turbo:before-fetch-response@document->my-loading#displayContentOrderBkks"]
-    = render 'shared/loading_data' 
-    .col-12.col-md-12.mt-2
-      = turbo_frame_tag "order_bkks"
-        / .row
-        /   == pagy_bootstrap_nav(@pagy)
-        .container-fluid.sticky-top.p-0
-          .fixed-header.small.small
-            table.table.table-bordered.table-sm.table-hover
-              thead.table-primary.align-middle.thead
-                tr
-                  th.small.text-center[style="width: 2%", rowspan="2"]
-                    = "#"
-                  th.small[style="width: 20%", rowspan="2"]
-                    = sort_link(@q, 'division_name', class: 'd-block text-decoration-none text-dark')
-                      = "Склад"
-                      = show_icon_filter(:store_id_in)                   
-                  th.small[style="width: 30%", rowspan="2"]
-                    = sort_link(@q, :product, class: 'd-block text-decoration-none text-dark')
-                      = "Наименование"
-                      = show_icon_filter(:product_in) 
-                  th.small.text-center[style="width: 20%", colspan="4"] 
-                    = "Продажи (предыдущие)"
-                  th.small.text-center[style="width: 5%", rowspan="2"]
-                    = sort_link(@q, :average_sales, class: 'd-block text-decoration-none text-dark')
-                      = "Сред. продажи за 4 нед."
-                  th.small.text-center[style="width: 5%", rowspan="2"]
-                    = sort_link(@q, :remainder, class: 'd-block text-decoration-none text-dark')
-                      = "Остаток по 1С"
-                  th.small.text-center[style="width: 5%", rowspan="2"]
-                    = sort_link(@q, :recommended_order, class: 'd-block text-decoration-none text-dark')
-                      = "Рекомен. заказ"
-                  th.small.text-center.text-nowrap[style="width: 10%", rowspan="2"]
-                    = sort_link(@q, :order, class: 'd-block text-decoration-none text-dark')
-                      = "Заказ"
-                      br
-                      = "#{day_name(@order_bkks.last.created_at.next_day, :with_prepositional)}"
-                tr
-                  th.small.text-center[style="width: 5%"]
-                    = sort_link(@q, :sales_four_weeks_ago, class: 'd-block text-decoration-none text-dark')
-                      = "4 нед."
-                  th.small.text-center[style="width: 5%"]
-                    = sort_link(@q, :sales_three_weeks_ago, class: 'd-block text-decoration-none text-dark')
-                      = "3 нед. "
-                  th.small.text-center[style="width: 5%"]
-                    = sort_link(@q, :sales_two_weeks_ago, class: 'd-block text-decoration-none text-dark')
-                      = "2 нед."
-                  th.small.text-center[style="width: 5%"]
-                    = sort_link(@q, :sales_one_weeks_ago, class: 'd-block text-decoration-none text-dark')
-                      = "1 нед."        
+  .col-12.col-md-12.mt-2
+    = turbo_frame_tag "order_bkks"
+      .container-fluid.sticky-top.bg-white.p-0[data-controller="loading"]
+        = render "shared/loading_data"
+        .fixed-header.small
+          table.table.table-bordered.table-sm.table-hover
+            thead.table-primary.align-middle.thead
+              tr
+                th.small.text-center[style="width: 2%", rowspan="2"]
+                  = "#"
+                th.small[style="width: 15%", rowspan="2"]
+                  = sort_link(@q, 'division_name', class: 'd-block text-decoration-none text-dark')
+                    = "Склад"
+                    = show_icon_filter(:store_id_in)  
+                th.small[style="width: 10%", rowspan="2"]
+                  = sort_link(@q, :product_category, class: 'd-block text-decoration-none text-dark')
+                    = "Категория"
+                    = show_icon_filter(:product_category_in)  
+                th.small[style="width: 10%", rowspan="2"]
+                  = sort_link(@q, :product_group, class: 'd-block text-decoration-none text-dark')
+                    = "Группа"
+                    = show_icon_filter(:product_group_in)                 
+                th.small[style="width: 13%", rowspan="2"]
+                  = sort_link(@q, :product, class: 'd-block text-decoration-none text-dark')
+                    = "Наименование"
+                    = show_icon_filter(:product_in) 
+                th.small.text-center[style="width: 20%", colspan="4"] 
+                  = "Продажи (предыдущие)"
+                th.small.text-center[style="width: 5%", rowspan="2"]
+                  = sort_link(@q, :average_sales, class: 'd-block text-decoration-none text-dark')
+                    = "Сред. продажи за 4 нед."
+                th.small.text-center[style="width: 5%", rowspan="2"]
+                  = sort_link(@q, :remainder, class: 'd-block text-decoration-none text-dark')
+                    = "Остаток по 1С"
+                th.small.text-center[style="width: 5%", rowspan="2"]
+                  = sort_link(@q, :recommended_order, class: 'd-block text-decoration-none text-dark')
+                    = "Рекомен. заказ"
+                th.small.text-center[style="width: 10%", colspan="2"] 
+                  = "Заказ "
+                  - if @order_bkks.last&.created_at.present?
+                    = "#{day_name(@order_bkks.last.created_at.next_day, :with_prepositional)}"
+              tr
+                th.small.text-center[style="width: 5%"]
+                  = sort_link(@q, :sales_four_weeks_ago, class: 'd-block text-decoration-none text-dark')
+                    = "4 нед."
+                th.small.text-center[style="width: 5%"]
+                  = sort_link(@q, :sales_three_weeks_ago, class: 'd-block text-decoration-none text-dark')
+                    = "3 нед. "
+                th.small.text-center[style="width: 5%"]
+                  = sort_link(@q, :sales_two_weeks_ago, class: 'd-block text-decoration-none text-dark')
+                    = "2 нед."
+                th.small.text-center[style="width: 5%"]
+                  = sort_link(@q, :sales_one_weeks_ago, class: 'd-block text-decoration-none text-dark')
+                    = "1 нед."        
+                th.small.text-center.text-nowrap[style="width: 5%", rowspan="2"]
+                  = "дневной"
+                th.small.text-center.text-nowrap[style="width: 5%", rowspan="2"]
+                  = "вечерный"               
 
-                      / = show_icon_filter(:to_order_in)                   
-     
-              tbody#body-order-bkks[data-my-loading-target="contentOrderBkks"]
-                = render @order_bkks
-        .mt-2.stiky-bottom
-          == pagy_bootstrap_nav(@pagy).html_safe if @pagy.pages > 1
+            tbody#body-order-bkks
+              = render @order_bkks
+          = render 'shared/paginate', pagy: @pagy
+

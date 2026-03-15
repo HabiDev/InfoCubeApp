@@ -1,5 +1,5 @@
-= turbo_stream.append "body-users"
-  = render @users
-  
+= turbo_stream.append "body-frovs" do
+  = render @frovs
+
 = turbo_stream.replace :pagination do
   = turbo_pagination_frame(@pagy)

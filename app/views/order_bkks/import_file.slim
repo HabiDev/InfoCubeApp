@@ -5,7 +5,7 @@
         = t('resource.load') 
       button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]       
     .modal-body
-      = form_with url: import_order_bkks_path, method: :post do |f|
+      = form_with url: import_order_bkks_path, method: :post, multipart: true, data: { turbo: false }  do |f|
         .row 
           .col-12
             = f.file_field :file, class: 'form-control'

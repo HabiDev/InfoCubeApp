@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @q = User.includes(:profile).ransack(params[:q])
     # @q.sorts = ['full_name asc'] if @q.sorts.empty?
    
-    # @q.sorts = ['profile_full_name asc'] if @q.sorts.empty?
+    @q.sorts = ['profile_full_name asc'] if @q.sorts.empty?
     @pagy, @users = pagy(@q.result(disinct: true).includes(:profile)) 
     @count_users = @q.result.count
   end

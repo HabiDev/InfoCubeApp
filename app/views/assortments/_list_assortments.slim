@@ -14,54 +14,45 @@
       = link_to t('button.export_xls'), assortments_path(q: request.params[:q], format: 'xlsx'), class: 'btn btn-outline-warning btn-sm mx-1'
     - if current_user&.admin? || current_user&.moderator?
       = link_to "#{t('button.import')}", import_file_assortments_path, class: "btn btn-outline-primary btn-sm mx-4", data: { turbo_frame: "modal_form" }
-  / .row.mt-2.p-0.mx-0
-  /   = render 'search_form'
+
   hr.mb-0.mt-2
 .row
-  .contetnt-assortments.px-0.ps-0[data-controller="my-loading" data-action="turbo:before-fetch-request@document->my-loading#displayAssortmentsLoading turbo:before-fetch-response@document->my-loading#displayContentAssortments"]
-    = render 'shared/loading_data' 
-    .col-12.col-md-12.mt-2
-      = turbo_frame_tag "assortments"
-        / .row
-        /   == pagy_bootstrap_nav(@pagy)
-        .container-fluid.sticky-top.p-0
-          .fixed-header.small.small
-            table.table.table-bordered.table-sm
-              thead.table-primary.align-middle.thead
-                tr
-                  th.small
-                    = sort_link(@q, 'division_name', class: 'd-block text-decoration-none text-dark')
-                      = "Склад"
-                      = show_icon_filter(:store_id_in)
-                  th.small
-                    = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
-                      = "Поставщик" 
-                      = show_icon_filter(:provider_in)
-                  th.small.text-center
-                    = sort_link(@q, :product_id, class: 'd-block text-decoration-none text-dark')
-                      = "Код товара"
-                  th.small
-                    = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
-                      = "Наименование"
-                      = show_icon_filter(:product_in)
-                  th.small.text-center
-                    = sort_link(@q, :comment_in, class: 'd-block text-decoration-none text-dark')
-                      = "Коммент."
-                      = show_icon_filter(:comment_in)               
-                  th.small.text-center
-                    = sort_link(@q, :remainder, class: 'd-block text-decoration-none text-dark')
-                      = "Остаток"
-                      = show_icon_filter(:remainder_in)  
-                  th.small.text-center
-                    = sort_link(@q, :sales, class: 'd-block text-decoration-none text-dark')
-                      = "Продажи (кол-во)"                                                            
-                  
-                  / th.text-end.font-weight-bold.px-3
-                  /   i.bi.bi-grip-vertical       
-              tbody#body-assortments[data-my-loading-target="contentAssortments"]
-                = render @assortments
-          
-                / .row.fixed-bottom
+  .col-12.col-md-12.mt-2
+    = turbo_frame_tag "assortments"
+      .container-fluid.sticky-top.p-0[data-controller="loading"]
+        = render "shared/loading_data"
+        .fixed-header.small.small
+          table.table.table-bordered.table-sm
+            thead.table-primary.align-middle.thead
+              tr
+                th.small
+                  = sort_link(@q, 'division_name', class: 'd-block text-decoration-none text-dark')
+                    = "Склад"
+                    = show_icon_filter(:store_id_in)
+                th.small
+                  = sort_link(@q, :provider, class: 'd-block text-decoration-none text-dark')
+                    = "Поставщик" 
+                    = show_icon_filter(:provider_in)
+                th.small.text-center
+                  = sort_link(@q, :product_id, class: 'd-block text-decoration-none text-dark')
+                    = "Код товара"
+                th.small
+                  = sort_link(@q, :balance, class: 'd-block text-decoration-none text-dark')
+                    = "Наименование"
+                    = show_icon_filter(:product_in)
+                th.small.text-center
+                  = sort_link(@q, :comment_in, class: 'd-block text-decoration-none text-dark')
+                    = "Коммент."
+                    = show_icon_filter(:comment_in)               
+                th.small.text-center
+                  = sort_link(@q, :remainder, class: 'd-block text-decoration-none text-dark')
+                    = "Остаток"
+                    = show_icon_filter(:remainder_in)  
+                th.small.text-center
+                  = sort_link(@q, :sales, class: 'd-block text-decoration-none text-dark')
+                    = "Продажи (кол-во)"                                                            
 
-        .mt-2.stiky-bottom
-          == pagy_bootstrap_nav(@pagy).html_safe if @pagy.pages > 1
+            tbody#body-assortments[data-my-loading-target="contentAssortments"]
+              = render @assortments
+
+          = render 'shared/paginate', pagy: @pagy

@@ -1,0 +1,4 @@
+- if pagy.next
+  .my-paginate
+    = turbo_frame_tag :pagination, loading: :lazy, 
+      src: url_for(request.query_parameters.merge(page: pagy.next, format: :turbo_stream))

@@ -1,30 +1,31 @@
 .row
-  .col-12.col-md-12.text-end
+  .col-12.col-md-12.text-end.mt-2
     - if current_user&.admin?
       = link_to "#{t('button.new')}", new_user_path, class: "btn btn-outline-success btn-sm", data: { turbo_frame: "modal_form" }
-  .row.mt-2.p-0.mx-0
-    = render 'search_form'
-  .row 
-    = "Кол-во записей: #{@count_users}"
-  hr.mb-0
+  .row.mt-3.p-0.mx-0
+    .col-4.mt-3
+      = "Кол-во записей: #{@count_users}"
+    .col-8
+      = render 'search_form'  
+  hr.m-0
 .row
-  / .contetnt-divisions[data-controller="my-loading" data-action="turbo:before-fetch-request@document->my-loading#displayUsersLoading turbo:before-fetch-response@document->my-loading#displayContentUsers"]
-  /   = render 'shared/loading_data' 
   .col-12.col-md-12.mt-3 
     = turbo_frame_tag "users"
-      .container
-        .fixed-header
-          table.table
-            thead.table-primary.thead
-              tr
-                th
-                  / = sort_link(@q, :release_at, class: 'd-block text-decoration-none text-dark')
-                  / = "Пользователь"
-                  = t("#{@users.model.human_attribute_name(:full_name)}")              
-                th.text-end.font-weight-bold.px-3
-                  i.bi.bi-grip-vertical       
-            tbody#body-users[data-my-loading-target="contentUsers"]
-              = render @users
-          - if @pagy.next
-            = turbo_frame_tag :pagination, loading: :lazy, 
-              src: url_for(page: @pagy.next, format: :turbo_stream), class: 'my-paginate'
+      .container-fluid[data-controller="loading"]
+        = render "shared/loading_data"
+        .catalog
+          .fixed-header
+            table.table
+              thead.table-primary.thead
+                tr
+                  th
+                    = sort_link(@q, 'profile_full_name', class: 'd-block text-decoration-none text-dark')
+                      = t("#{@users.model.human_attribute_name(:full_name)}")  
+
+                  th.text-end.font-weight-bold.px-3
+                    i.bi.bi-grip-vertical  
+
+              tbody#body-users[data-my-loading-target="contentUsers"]
+                = render @users
+
+            = render 'shared/paginate', pagy: @pagy

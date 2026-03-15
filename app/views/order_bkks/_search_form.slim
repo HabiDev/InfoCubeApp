@@ -13,13 +13,14 @@
     / .row
     /   .col-12
     /     = f.input :product_cont_any, collection: @order_products, label: "Наименование", input_html: { id: "order-product-select", class: "m-0 form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-    / .row
-    /   .col-12
-    /     = f.input :product_group_in, collection: @frov_product_groups, label: "Группа", input_html: { id: "order-product-group-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-    / .row  
-    /   .col-12
-    /     = f.input :availability_order_in, collection: @availability_order_coolings, label: "Наличие заказа", input_html: { id: "order-availability-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
-    / .row
+    .row  
+      .col-12
+        = f.input :product_category_in, collection: @order_bkk_product_categories, label: "Категория", input_html: { id: "order-product_categories-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+  
+    .row
+      .col-12
+        = f.input :product_group_in, collection: @order_bkk_product_groups, label: "Группа", input_html: { id: "order-product-group-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
+  / .row
     /   .col-12
     /     = f.input :to_order_in, collection: @to_order_frovs, label: "К заказу", input_html: { id: "order-to-order-select", class: "form-control form-control-sm", multiple: "multiple", data: { controller: "select2", placeholder: t('simple_form.prompt'), theme: 'bootstrap-5' } }
   / .row

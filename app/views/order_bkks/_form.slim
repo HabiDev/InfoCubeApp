@@ -1,9 +1,11 @@
 = simple_form_for @order_bkk do |f|
   = f.error_notification
   .row
-    .col-12
+    .col-6
       = f.input :order, required: true, class: 'form-control form-control-sm' 
+    .col-6
+      = f.input :additional_order, required: true, class: 'form-control form-control-sm' 
   .row  
     .col-12.col-md-12.text-end
       span.p-2
-        = f.submit "#{t('submit.save')}", class: "btn btn-primary"
+        = f.submit "#{t('submit.save')}", class: "btn btn-primary"      

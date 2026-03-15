@@ -1,0 +1,6 @@
+= turbo_stream.append "body-order-coolings" do
+  = render @order_coolings
+
+= turbo_stream.replace :pagination do
+  = turbo_pagination_frame(@pagy)
+

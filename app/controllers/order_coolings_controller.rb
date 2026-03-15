@@ -6,6 +6,7 @@ class OrderCoolingsController < ApplicationController
     # # authorize Division 
     respond_to do |format|
       format.html
+      format.turbo_stream
       format.xlsx do
         render xlsx: 'order_coolings', template: 'order_coolings/export_xls'
       end
@@ -16,11 +17,9 @@ class OrderCoolingsController < ApplicationController
     if params[:file].present?
       OrderCooling.delete_all
       OrderCooling.import(params[:file])
-      
-      flash.now[:notice] = t('notice.record_imported')
-      set_order_coolings
+      redirect_to order_coolings_path, notice: t('notice.record_imported')
     else
-      flash.now[:error] = t('notice.record_imported_error')
+      redirect_to order_coolings_path, alert: t('notice.record_imported_error')
     end
     # redirect_to orders_path unless turbo_frame_request?
   end
@@ -44,6 +43,6 @@ class OrderCoolingsController < ApplicationController
     # @xls = @q.result(disinct: true)
     @q.sorts = ['division_name asc', 'provider asc', 'product asc'] if @q.sorts.empty?
     @xls = @q.result(disinct: true)
-    @pagy, @order_coolings = pagy(@q.result(disinct: true), limit: 25)
+    @pagy, @order_coolings = pagy(@q.result(disinct: true))
   end
 end

@@ -2,10 +2,14 @@ tr id=dom_id(order_bkk) onclick="Turbo.visit('#{edit_order_bkk_path(order_bkk)}'
   td.text-center.fw-bold
     / i.bi.bi-check-lg."#{order_bkk_cell_classing(order_bkk.order)}"
     = order_bkk_cell_classing(order_bkk.order)
-  td.small
+  td.small.text-nowrap.truncate-cell
     = order_bkk.division&.name
   / = content_tag(:td, class: "small fw-bold #{order_bkk_cell_classing(order_bkk.order)}")
-  td.small
+  td.small.text-nowrap.truncate-cell
+    = order_bkk.product_category
+  td.small.text-nowrap
+    = order_bkk.product_group
+  = content_tag(:td, class: "small text-nowrap #{order_bkk_colored_classing(order_bkk.colored)}")
     /.bg-success.text-dark.bg-opacity-75
     = order_bkk.product
   td.small.text-end
@@ -22,13 +26,9 @@ tr id=dom_id(order_bkk) onclick="Turbo.visit('#{edit_order_bkk_path(order_bkk)}'
     = order_bkk.remainder
   td.small.text-end
     = order_bkk.recommended_order
-  td.small.text-center.fw-bold
+  = content_tag(:td, class: "small text-center fw-bold #{order_bkk_colored_classing(order_bkk.colored)}")
     = order_bkk.order
-    / = link_to "", edit_order_bkk_path(order_bkk), class: "stretched-link link-underline-dark", data: { turbo_frame: "modal_form" }
-        / = order_bkk.order
-  
+  = content_tag(:td, class: "small text-center fw-bold #{order_bkk_colored_classing(order_bkk.colored)}")
+    = order_bkk.additional_order 
 
-  / td.text-end.px-3
-  /   span.d-block.font-weight-bold
-  /     = render "divisions/control", division: division
 

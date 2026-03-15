@@ -24,3 +24,6 @@ application.register("select2", Select2Controller)
 
 import AutofocusController from "./autofocus_controller"
 application.register("autofocus", AutofocusController)
+
+import LoadingController from "./loading_controller"
+application.register("loading", LoadingController)

@@ -1,0 +1,12 @@
+/ = turbo_frame_tag "order_count" do
+/   - if @orders.present?
+/     = "Кол-во записей: #{@count_orders} (Актуально на: #{l(@orders.last.created_at, format: :small)})"
+/   - else 
+/     = "Кол-во записей: #{@count_orders}"
+/ end
+
+= turbo_stream.append "body-orders" do
+  = render @orders
+
+= turbo_stream.replace :pagination do
+  = turbo_pagination_frame(@pagy)
