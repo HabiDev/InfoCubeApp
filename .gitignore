@@ -56,3 +56,4 @@
 
 # IDE Files 
 /.vscode
+/config/credentials/production.key
